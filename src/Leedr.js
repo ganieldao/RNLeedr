@@ -22,15 +22,15 @@ export default class Leedr extends Component {
         // Success!
         var resp = request.responseText;
         var theDoc = HTMLParser.parse(resp);
-        console.log(theDoc.querySelector('#chapters'));
+        //The following gets the chapter link
+        console.log(theDoc.querySelector('#chapters').querySelectorAll('a')[0].attributes["href"]);
       } else {
-        // We reached our target server, but it returned an error
-
+        console.log("Server returned error")
       }
     };
 
     request.onerror = function() {
-      // There was a connection error of some sort
+      console.log("Connection Error")
     };
 
     request.send();
