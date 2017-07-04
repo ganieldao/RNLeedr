@@ -14,12 +14,6 @@ Navigation.startTabBasedApp({
       screen: 'example.FirstTabScreen', // this is a registered name for a screen
       icon: require('./res/one.png'),
       title: 'Screen One'
-    }, 
-    {
-      label: 'Two',
-      screen: 'example.FirstTabScreen', // this is a registered name for a screen
-      icon: require('./res/one.png'),
-      title: 'Screen Two'
     }
   ]
 });

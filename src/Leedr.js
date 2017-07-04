@@ -7,23 +7,33 @@ import {
 } from 'react-native';
 import {Provider} from 'react-redux';
 
+const HTMLParser = require('fast-html-parser');
+
 export default class Leedr extends Component {
   componentWillMount() {
 
-    var HTMLParser = require('fast-html-parser');
- 
-    var root = HTMLParser.parse('<ul id="list"><li>Hello World</li></ul>');
- 
-    console.log(root.firstChild.structure);
-
     const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
-    fetch(testUrl)
-      .then(function(data) {
-        // Here you get the data to modify as you please
-      })
-      .catch(function(error) {
-        // If there is any error you will catch them here
-      }); 
+    console.log("time to fetch");
+    var request = new XMLHttpRequest();
+    request.open('GET', testUrl, true);
+
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+        // Success!
+        var resp = request.responseText;
+        var theDoc = HTMLParser.parse(resp);
+        console.log(theDoc.querySelector('#chapters'));
+      } else {
+        // We reached our target server, but it returned an error
+
+      }
+    };
+
+    request.onerror = function() {
+      // There was a connection error of some sort
+    };
+
+    request.send();
   }
 
   render() {
