@@ -14,26 +14,15 @@ export default class Leedr extends Component {
 
     const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
     console.log("time to fetch");
-    var request = new XMLHttpRequest();
-    request.open('GET', testUrl, true);
 
-    request.onload = function() {
-      if (request.status >= 200 && request.status < 400) {
-        // Success!
-        var resp = request.responseText;
-        var theDoc = HTMLParser.parse(resp);
-        //The following gets the chapter link
+    fetch(testUrl) // Call the fetch function passing the url of the API as a parameter
+      .then(function(data) {
+        var theDoc = HTMLParser.parse(data["_bodyInit"]);
         console.log(theDoc.querySelector('#chapters').querySelectorAll('a')[0].attributes["href"]);
-      } else {
-        console.log("Server returned error")
-      }
-    };
-
-    request.onerror = function() {
-      console.log("Connection Error")
-    };
-
-    request.send();
+      })
+      .catch(function() {
+        // This is where you run code if the server returns any errors
+      });
   }
 
   render() {
