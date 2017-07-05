@@ -12,17 +12,20 @@ const HTMLParser = require('fast-html-parser');
 export default class Leedr extends Component {
   componentWillMount() {
 
+    this.fetchChapters();
+  }
+
+  async fetchChapters() {
     const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
     console.log("time to fetch");
-
-    fetch(testUrl) // Call the fetch function passing the url of the API as a parameter
-      .then(function(data) {
-        var theDoc = HTMLParser.parse(data["_bodyInit"]);
-        console.log(theDoc.querySelector('#chapters').querySelectorAll('a')[0].attributes["href"]);
-      })
-      .catch(function() {
-        // This is where you run code if the server returns any errors
-      });
+    try {
+      const response = await fetch(testUrl);
+      var theDoc = HTMLParser.parse(response["_bodyInit"]);
+      //This returns the first chapter url
+      console.log(theDoc.querySelector('#chapters').querySelectorAll('a')[0].attributes["href"]);
+    } catch (err) {
+      console.log('fetch failed', err);
+    }
   }
 
   render() {
