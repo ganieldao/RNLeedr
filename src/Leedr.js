@@ -58,6 +58,10 @@ export default class Leedr extends Component {
     var description = doc.querySelector('.hidden-content').structuredText;
   }
 
+  parseChapterContent(doc) {
+    console.log(doc.querySelector('.chapter-content').structuredText);
+  }
+
   render() {
     return (
         <View>
