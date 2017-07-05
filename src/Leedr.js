@@ -30,14 +30,15 @@ export default class Leedr extends Component {
     return body;
   }
 
-  fetchChapters(htmlString) {
+  parseChapterLinks(htmlString) {
     console.log("getting chapters");
     var theDoc = HTMLParser.parse(htmlString);
 
-    //RRL has a table with the id 'chapters'. We are looking for the chapter links which are in the 'tbody'
-    //Each row of the 'tbody' is represented by 'tr', and the first 'a' contains the chapter link
+    //RRL has a table with the id 'chapters'. We are looking for the chapter links which are in the <tbody>
+    //Each row of the <tbody> is represented by <tr>
     var rows = theDoc.querySelector('#chapters').querySelector('tbody').querySelectorAll('tr')
     var links = rows.map(function(row) {
+      //The first <a> of each row contains the chapter link (without the base url)
       return 'https://royalroadl.com' + row.querySelector('a').attributes["href"];
     })
 
