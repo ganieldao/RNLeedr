@@ -1,7 +1,6 @@
-import { createStore } from 'redux'
-import app from './reducers'
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from '../reducers/rootReducer';
 
-export default function configureStore() {
-  let store = createStore(app)
-  return store
+export default function configureStore(initialState) {
+  return createStore(rootReducer, initialState);
 }

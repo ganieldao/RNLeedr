@@ -1,8 +1,9 @@
 import { Navigation } from 'react-native-navigation';
-
+import {Provider} from 'react-redux';
 import { registerScreens } from './screens';
-//import configureStore from './store/configureStore';
-//const store = configureStore();
+import configureStore from './redux/store/configureStore';
+
+const store = configureStore();
 
 registerScreens(); // this is where you register all of your app's screens
 
