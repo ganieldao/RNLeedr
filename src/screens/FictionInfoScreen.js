@@ -34,11 +34,19 @@ export default class FictionInfoScreen extends Component {
     };
 
     const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
+    const testChapterUrl = 'https://royalroadl.com/fiction/8894/everybody-loves-large-chests/chapter/100167/death-comes-in-many-forms-6';
     fetchHtmlSource(testUrl)
       .then((htmlString) => {
         var doc = HTMLParser.parse(htmlString);
         parseChapterLinks(doc);
         console.log(parseNovelInfo(doc));
+      })
+      .catch((error) => console.log(error));
+
+    fetchHtmlSource(testChapterUrl)
+      .then((htmlString) => {
+        var doc = HTMLParser.parse(htmlString);
+        parseChapterContent(doc);
       })
       .catch((error) => console.log(error));
   }
@@ -47,6 +55,7 @@ export default class FictionInfoScreen extends Component {
     return (
         <View style={{flex:1, flexDirection:'column'}}>
           <Text>The Forgotten Conqueror</Text>
+          <Text>Za1d3</Text>
           <View style={{flex:0.4, flexDirection: 'row'}}>
             <Image
               style={{flex:0.4, height:'100%', resizeMode: 'contain'}}
