@@ -36,6 +36,7 @@ export function parseNovelInfo(doc) {
     info['title'] = doc.querySelector('h1').rawText;
     info['author'] = doc.querySelector('h4').querySelector('a').rawText;
     info['desc'] = doc.querySelector('.hidden-content').structuredText;
+    info['img'] = doc.querySelector('.fic-header').querySelector('img').rawAttributes['src'];
     return info;
   }
 

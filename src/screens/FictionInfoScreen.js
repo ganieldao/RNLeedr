@@ -3,7 +3,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  ListView
 } from 'react-native';
 import {
   fetchHtmlSource,
@@ -14,8 +15,22 @@ import {
 
 const HTMLParser = require('fast-html-parser');
 
-export default class ChapterInfoScreen extends Component {
+export default class FictionInfoScreen extends Component {
+  //Default state?
+  state = {
+    dataSource: null,
+    offset: 0,
+    loading: false,
+    isActionButtonVisible: true
+  }
+
   componentWillMount() {
+    //Set up ListView data source
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      dataSource: ds.cloneWithRows(['row 1', 'row 2']),
+    };
+
     const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
     fetchHtmlSource(testUrl)
       .then((htmlString) => {
@@ -30,6 +45,10 @@ export default class ChapterInfoScreen extends Component {
     return (
         <View>
           <Text>hi</Text>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={(rowData) => <Text>{rowData}</Text>}
+          />
         </View>
     );
   }

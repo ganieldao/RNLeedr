@@ -5,7 +5,7 @@ import configureStore from './redux/store/configureStore';
 
 const store = configureStore();
 
-registerScreens(); // this is where you register all of your app's screens
+registerScreens(store, Provider); // this is where you register all of your app's screens
 
 // start the app
 Navigation.startTabBasedApp({
