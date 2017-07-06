@@ -1,8 +1,8 @@
-/*import Leedr from './src/Leedr';
-
 import { Navigation } from 'react-native-navigation';
 
-import { registerScreens } from './src/screens';
+import { registerScreens } from './screens';
+//import configureStore from './store/configureStore';
+//const store = configureStore();
 
 registerScreens(); // this is where you register all of your app's screens
 
@@ -16,8 +16,4 @@ Navigation.startTabBasedApp({
       title: 'Screen One'
     }
   ]
-}); */
-
-import App from './src/app';
-
-
+});

@@ -11,11 +11,11 @@ import {
   parseChapterLinks,
   parseNovelInfo,
   parseChapterContent
-} from './sources/RRLSource'
+} from '../sources/RRLSource'
 
 const HTMLParser = require('fast-html-parser');
 
-export default class Leedr extends Component {
+export default class ChapterInfoScreen extends Component {
   componentWillMount() {
     const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
     fetchHtmlSource(testUrl)
@@ -35,4 +35,3 @@ export default class Leedr extends Component {
     );
   }
 }
-AppRegistry.registerComponent('Leedr', () => Leedr);
