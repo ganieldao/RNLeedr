@@ -1,11 +1,11 @@
 
 export async function fetchHtmlSource(url) {
-    const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
     console.log("time to fetch");
     let body;
     try {
-      const response = await fetch(testUrl);
+      const response = await fetch(url);
       body = response['_bodyInit'];
+      console.log(body);
     } catch (err) {
       console.log('fetch failed', err);
     } 

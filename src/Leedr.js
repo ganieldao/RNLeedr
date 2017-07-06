@@ -17,7 +17,8 @@ const HTMLParser = require('fast-html-parser');
 
 export default class Leedr extends Component {
   componentWillMount() {
-    fetchHtmlSource('asdf')
+    const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
+    fetchHtmlSource(testUrl)
       .then((htmlString) => {
         var doc = HTMLParser.parse(htmlString);
         parseChapterLinks(doc);
