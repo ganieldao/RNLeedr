@@ -15,8 +15,7 @@ import * as fictionActions from '../redux/actions/actions.js';
 
 import {
   fetchHtmlSource,
-  parseChapterLinks,
-  parseNovelInfo,
+  parseFictionInfo,
   parseChapterContent
 } from '../sources/RRLSource'
 
@@ -65,20 +64,20 @@ class FictionInfoScreen extends Component {
 
   render() {
     const { details } = this.props;
-		const info = details;
+		const {fictionInfo, chapterInfos} = details;
     return (
         <View style={{flex:1, flexDirection:'column'}}>
-          <Text>{info.title}</Text>
-          <Text>{info.author}</Text>
+          <Text>{fictionInfo.title}</Text>
+          <Text>{fictionInfo.author}</Text>
           <View style={{flex:0.4, flexDirection: 'row'}}>
             <Image
               style={{flex:0.4, height:'100%', resizeMode: 'contain'}}
-              source={{uri: info.img}}
+              source={{uri: fictionInfo.img}}
             />
             <View style={{flex:0.6}}>
               <Text>Description</Text>
                 <ScrollView style={{flex:0.5}}>
-                  <Text>{info.desc}</Text>
+                  <Text>{fictionInfo.desc}</Text>
                 </ScrollView>
             </View>
           </View>
