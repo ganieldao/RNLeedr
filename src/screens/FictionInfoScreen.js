@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
-  ListView,
+  FlatList,
   Image,
   ScrollView
 } from 'react-native';
@@ -27,18 +27,14 @@ const testChapterUrl = 'https://royalroadl.com/fiction/8894/everybody-loves-larg
 class FictionInfoScreen extends Component {
   //Default state?
   state = {
-    dataSource: null,
+    data: null,
     offset: 0,
     isRefreshing: false,
   }
 
-  componentWillMount() {
-    //Set up ListView data source
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      dataSource: ds.cloneWithRows(['row 1', 'row 2']),
-    };
-    
+  _keyExtractor = (item, index) => item.title;
+
+  componentWillMount() { 
     this._retrieveDetails();
 
     //Test chapter content fetch
@@ -56,6 +52,10 @@ class FictionInfoScreen extends Component {
       .then((htmlString) => {
         var doc = HTMLParser.parse(htmlString);
         this.props.actions.retrieveFictionDetails(doc);
+        this.setState({
+          data: this.props.details.chapterInfos
+        });
+
       })
       .catch((error) => console.log(error));
 
@@ -81,10 +81,13 @@ class FictionInfoScreen extends Component {
                 </ScrollView>
             </View>
           </View>
-          <ListView
+          <FlatList
             style={{flex:0.6}}
-            dataSource={this.state.dataSource}
-            renderRow={(rowData) => <Text>{rowData}</Text>}
+            data={this.state.data}
+            keyExtractor={this._keyExtractor}
+            renderItem={({item}) => {
+              return <Text>{item.title}</Text>
+            }}
           />
         </View>
     );
