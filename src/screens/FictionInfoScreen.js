@@ -14,15 +14,12 @@ import {
 import * as fictionActions from '../redux/actions/actions.js';
 
 import {
-  fetchHtmlSource,
-  parseFictionInfo,
-  parseChapterContent
+  fetchHtmlSource
 } from '../sources/RRLSource'
 
 const HTMLParser = require('fast-html-parser');
 
-const testUrl = 'https://royalroadl.com/fiction/4293/the-iron-teeth-a-goblins-tale';
-const testChapterUrl = 'https://royalroadl.com/fiction/8894/everybody-loves-large-chests/chapter/100167/death-comes-in-many-forms-6';
+const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
 
 class FictionInfoScreen extends Component {
   //Default state?
@@ -36,14 +33,6 @@ class FictionInfoScreen extends Component {
 
   componentWillMount() { 
     this._retrieveDetails();
-
-    //Test chapter content fetch
-    /*fetchHtmlSource(testChapterUrl)
-      .then((htmlString) => {
-        var doc = HTMLParser.parse(htmlString);
-        parseChapterContent(doc);
-      })
-      .catch((error) => console.log(error));*/
   }
 
   _retrieveDetails(isRefreshed) {
@@ -75,7 +64,7 @@ class FictionInfoScreen extends Component {
               source={{uri: fictionInfo.img}}
             />
             <View style={{flex:0.6}}>
-              <Text>Description</Text>
+              <Text>Description:</Text>
                 <ScrollView style={{flex:0.5}}>
                   <Text>{fictionInfo.desc}</Text>
                 </ScrollView>
@@ -102,8 +91,7 @@ FictionInfoScreen.propTypes = {
 
 function mapStateToProps(state, ownProps) {
 	return {
-		details: state.fictions.details,
-		similarMovies: state.fictions.similarMovies
+		details: state.fictions.details
 	};
 }
 
