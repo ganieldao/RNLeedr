@@ -28,7 +28,7 @@ class FictionInfoScreen extends Component {
     offset: 0,
     isRefreshing: false,
   }
-
+  
   _keyExtractor = (item, index) => item.title;
 
   componentWillMount() { 
@@ -55,7 +55,7 @@ class FictionInfoScreen extends Component {
     const { details } = this.props;
 		const {fictionInfo, chapterInfos} = details;
     return (
-        <View style={{flex:1, flexDirection:'column'}}>
+        <View style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
           <Text>{fictionInfo.title}</Text>
           <Text>{fictionInfo.author}</Text>
           <View style={{flex:0.4, flexDirection: 'row'}}>
@@ -86,7 +86,8 @@ class FictionInfoScreen extends Component {
 FictionInfoScreen.propTypes = {
 	actions: PropTypes.object.isRequired,
 	details: PropTypes.object.isRequired,
-	navigator: PropTypes.object
+  url: PropTypes.string.isRequired,
+	navigator: PropTypes.object,
 };
 
 function mapStateToProps(state, ownProps) {

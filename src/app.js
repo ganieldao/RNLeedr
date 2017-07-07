@@ -12,7 +12,7 @@ Navigation.startTabBasedApp({
   tabs: [
     {
       label: 'One',
-      screen: 'example.FirstTabScreen', // this is a registered name for a screen
+      screen: 'Leedr.FictionBrowserScreen', // this is a registered name for a screen
       icon: require('./res/one.png'),
       title: 'Fiction Info'
     }
