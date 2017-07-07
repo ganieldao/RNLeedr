@@ -21,7 +21,7 @@ import {
 
 const HTMLParser = require('fast-html-parser');
 
-const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
+const testUrl = 'https://royalroadl.com/fiction/4293/the-iron-teeth-a-goblins-tale';
 const testChapterUrl = 'https://royalroadl.com/fiction/8894/everybody-loves-large-chests/chapter/100167/death-comes-in-many-forms-6';
 
 class FictionInfoScreen extends Component {

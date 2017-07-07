@@ -20,8 +20,8 @@ export function parseChapterInfos(doc) {
     var rows = doc.querySelector('#chapters').querySelector('tbody').querySelectorAll('tr')
     var info = rows.map(function(row) {
       //This gets date published, which might be used later
-      date = row.querySelector('time').rawText; 
-      title = row.querySelector('a').removeWhitespace().rawText;
+      date = row.querySelector('time').text; 
+      title = row.querySelector('a').removeWhitespace().text;
       //The first <a> of each row contains the chapter link (without the base url)
       link = 'https://royalroadl.com' + row.querySelector('a').attributes['href'];
       return {"date":date, "title":title, "link":link};
@@ -34,8 +34,8 @@ export function parseChapterInfos(doc) {
 export function parseFictionInfo(doc) {
     //Maybe include fiction tags?
     var info = {};
-    info['title'] = doc.querySelector('h1').rawText;
-    info['author'] = doc.querySelector('h4').querySelector('a').rawText;
+    info['title'] = doc.querySelector('h1').text;
+    info['author'] = doc.querySelector('h4').querySelector('a').text;
     info['desc'] = doc.querySelector('.hidden-content').structuredText;
     info['img'] = doc.querySelector('.fic-header').querySelector('img').rawAttributes['src'];
     //console.log(info);
