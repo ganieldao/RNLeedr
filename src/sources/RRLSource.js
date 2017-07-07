@@ -5,7 +5,7 @@ export async function fetchHtmlSource(url) {
     try {
       const response = await fetch(url);
       body = response['_bodyInit'];
-      console.log(body);
+      //console.log(body);
     } catch (err) {
       console.log('fetch failed', err);
     } 
@@ -37,6 +37,7 @@ export function parseNovelInfo(doc) {
     info['author'] = doc.querySelector('h4').querySelector('a').rawText;
     info['desc'] = doc.querySelector('.hidden-content').structuredText;
     info['img'] = doc.querySelector('.fic-header').querySelector('img').rawAttributes['src'];
+    console.log(info);
     return info;
   }
 
