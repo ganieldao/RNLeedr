@@ -73,7 +73,7 @@ class FictionInfoScreen extends Component {
           <View style={{flex:0.4, flexDirection: 'row'}}>
             <Image
               style={{flex:0.4, height:'100%', resizeMode: 'contain'}}
-              source={require('../../res/placeholder.png')}
+              source={{uri: info.img}}
             />
             <View style={{flex:0.6}}>
               <Text>Description</Text>
