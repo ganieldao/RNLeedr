@@ -22,7 +22,7 @@ class FictionBrowserScreen extends Component {
 
   componentWillMount() {
     //this._viewFiction(testUrl);
-    FictionService.getFictions();
+    //FictionService.getFictions();
   }
 
   _viewFiction(url) {
