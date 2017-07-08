@@ -26,6 +26,7 @@ import java.util.List;
          // No need to add RnnPackage and MainReactPackage
          return Arrays.<ReactPackage>asList(
              // eg. new VectorIconsPackage()
+             new RealmReactPackage()
          );
      }
 

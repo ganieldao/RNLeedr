@@ -14,7 +14,6 @@ export async function fetchHtmlSource(url) {
 
 export function parseChapterInfos(doc) {
     console.log("getting chapters");
-
     //RRL has a table with the id 'chapters'. We are looking for the chapter links which are in the <tbody>
     //Each row of the <tbody> is represented by <tr>
     var rows = doc.querySelector('#chapters').querySelector('tbody').querySelectorAll('tr')

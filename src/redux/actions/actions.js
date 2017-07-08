@@ -4,9 +4,13 @@ import {
   parseChapterContent
 } from '../../sources/RRLSource'
 
-export function retrieveFictionDetails(fictionUrl) {
+import FictionService from '../../realm/FictionService.js';
+
+export function retrieveFictionDetails(doc) {
+	let details = parseFictionInfo(doc)
+	//FictionService.addFiction(details);
 	return {
 		type: 'RETRIEVE_FICTION_DETAILS_SUCCESS',
-		details: parseFictionInfo(fictionUrl)
+		details: details
 	};
 }

@@ -2,10 +2,10 @@ var Realm = require('realm');
 
 const FictionSchema = {
     name: 'Fiction',
+    primaryKey: 'title',
     properties: {
         title: 'string',
         author: 'string',
-        url: 'string',
         img: 'string',
         chapters: {type: 'list', objectType:'Chapter'}
     }
@@ -13,6 +13,7 @@ const FictionSchema = {
 
 const ChapterSchema = {
     name: 'Chapter',
+    primaryKey: 'title',
     properties: {
         title: 'string',
         date: 'string',
@@ -22,3 +23,5 @@ const ChapterSchema = {
 }
 
 let realm = new Realm({schema: [FictionSchema, ChapterSchema]});
+
+module.exports = realm;

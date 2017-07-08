@@ -44,7 +44,6 @@ class FictionInfoScreen extends Component {
         this.setState({
           data: this.props.details.chapterInfos
         });
-
       })
       .catch((error) => console.log(error));
 
