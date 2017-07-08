@@ -5,10 +5,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,
-  FlatList,
-  Image,
-  ScrollView
+  View
 } from 'react-native';
 
 import {
@@ -24,7 +21,7 @@ const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
 class FictionBrowserScreen extends Component {
 
   componentWillMount() {
-    this._viewFiction(testUrl);
+    //this._viewFiction(testUrl);
     FictionService.getFictions();
   }
 

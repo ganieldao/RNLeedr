@@ -12,9 +12,15 @@ Navigation.startTabBasedApp({
   tabs: [
     {
       label: 'One',
+      screen: 'Leedr.FictionListScreen', // this is a registered name for a screen
+      icon: require('./res/one.png'),
+      title: 'Fiction List'
+    },
+    {
+      label: 'Two',
       screen: 'Leedr.FictionBrowserScreen', // this is a registered name for a screen
       icon: require('./res/one.png'),
-      title: 'Fiction Info'
+      title: 'Fiction Browser'
     }
   ]
 });
