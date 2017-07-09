@@ -13,8 +13,6 @@ import {
 
 import FictionService from '../realm/FictionService.js';
 
-const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
-
 class FictionListScreen extends Component {
   state = {
     data: null,
