@@ -37,7 +37,6 @@ class FictionBrowserScreen extends Component {
         let info = parseFictionInfo(doc);
         info['url'] = url; //Add the url to the information
 
-        //TODO ADD TO REDUX ACTIONS
         this.props.actions.addFiction(info); //Add to database
       })
       .catch((error) => console.log(error));

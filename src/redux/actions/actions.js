@@ -6,7 +6,6 @@ import {
 
 import FictionService from '../../realm/FictionService.js';
 
-//Get the fiction details from realm by url
 //Need to implement check to see if data exists in realm
 export function retrieveFictionDetails(url) {
 	let details = FictionService.getFictionByUrl(url);
@@ -18,6 +17,7 @@ export function retrieveFictionDetails(url) {
 
 export function addFiction(info) {
 	FictionService.addFiction(info);
+	//Needs to return update to list if any for reducer
 	return {
 		type: 'ADD_FICTION_SUCCESS'
 	}

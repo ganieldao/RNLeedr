@@ -14,15 +14,17 @@ let FictionService = {
 
     addFiction(data) {
         console.log("adding fiction to realm");
-        console.log(data);
+        let fiction;
         let {fictionInfo, chapterInfos} = data;
         realm.write(() => {
-            var chapterArray = [];
+            let chapterArray = [];
             chapterInfos.forEach(function(chapter) {
                 chapterArray.push({title:chapter.title, date:chapter.date, url:chapter.url, content:''});
             }, this);
-            var fiction = realm.create('Fiction', {title:fictionInfo.title, author:fictionInfo.author, img:fictionInfo.img, desc:fictionInfo.desc, url:data.url, chapters:chapterArray}, true);
+            fiction = realm.create('Fiction', {title:fictionInfo.title, author:fictionInfo.author, img:fictionInfo.img, desc:fictionInfo.desc, url:data.url, chapters:chapterArray}, true);
         });
+        //Need some way to check if anything was updated to return to the reducer
+        return fiction;
     }
 }
 

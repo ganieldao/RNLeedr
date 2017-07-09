@@ -13,14 +13,6 @@ import {
 
 import * as fictionActions from '../redux/actions/actions.js';
 
-import {
-  fetchHtmlSource
-} from '../sources/RRLSource'
-
-const HTMLParser = require('fast-html-parser');
-
-const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
-
 class FictionInfoScreen extends Component {
   //Default state?
   state = {
@@ -36,13 +28,10 @@ class FictionInfoScreen extends Component {
 
   _retrieveDetails(isRefreshed) {
     this.props.actions.retrieveFictionDetails(this.props.url);
-
-		if (isRefreshed && this.setState({ isRefreshing: false }));
 	}
 
   render() {
     const { details } = this.props;
-		//const {fictionInfo, chapterInfos} = details;
     return (
         <View style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
           <Text>{details.title}</Text>
