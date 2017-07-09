@@ -23,17 +23,18 @@ class FictionListScreen extends Component {
 
   _keyExtractor = (item, index) => item.title;
 
-  _viewFiction(url) {
+  _viewFiction(fiction) {
 		this.props.navigator.push({
 			screen: 'Leedr.FictionInfoScreen',
+      title: fiction.title,
 			passProps: {
-				url
+				url:fiction.url
 			}
 		});
 	}
 
-  _onPressButton() {
-    this._viewFiction(testUrl);
+  _onPressButton(item) {
+    this._viewFiction(item);
   }
 
   componentWillMount() {
@@ -49,7 +50,7 @@ class FictionListScreen extends Component {
           data={this.state.data}
           keyExtractor={this._keyExtractor}
           renderItem={({item}) => (
-            <TouchableHighlight onPress={() => this._onPressButton()}>
+            <TouchableHighlight onPress={() => this._onPressButton(item)}>
               <View style={{backgroundColor: 'white'}}>
                 <Text>{item.title}</Text>
               </View>

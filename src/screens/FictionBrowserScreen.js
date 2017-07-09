@@ -19,11 +19,13 @@ import FictionService from '../realm/FictionService.js';
 const HTMLParser = require('fast-html-parser');
 
 const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
+const testUrl2 = 'https://royalroadl.com/fiction/4293/the-iron-teeth-a-goblins-tale';
 
 class FictionBrowserScreen extends Component {
 
   componentWillMount() {
-    this._addFiction(testUrl);
+    this._addFiction(testUrl); //For testing
+    this._addFiction(testUrl2); //Me too
   }
 
   _addFiction(url) {
@@ -39,15 +41,6 @@ class FictionBrowserScreen extends Component {
       })
       .catch((error) => console.log(error));
   }
-
-  _viewFiction(url) {
-		this.props.navigator.showModal({
-			screen: 'Leedr.FictionInfoScreen',
-			passProps: {
-				url
-			}
-		});
-	}
 
   render() {
     return (
