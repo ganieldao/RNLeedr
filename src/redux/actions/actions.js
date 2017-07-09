@@ -6,9 +6,9 @@ import {
 
 import FictionService from '../../realm/FictionService.js';
 
-export function retrieveFictionDetails(doc) {
-	let details = parseFictionInfo(doc)
-	//FictionService.addFiction(details);
+//Get the fiction details from realm by url
+export function retrieveFictionDetails(url) {
+	let details = FictionService.getFictionByUrl(url);
 	return {
 		type: 'RETRIEVE_FICTION_DETAILS_SUCCESS',
 		details: details

@@ -24,7 +24,6 @@ const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
 class FictionInfoScreen extends Component {
   //Default state?
   state = {
-    data: null,
     offset: 0,
     isRefreshing: false,
   }
@@ -36,42 +35,33 @@ class FictionInfoScreen extends Component {
   }
 
   _retrieveDetails(isRefreshed) {
-    //this.props.url for parameter
-    fetchHtmlSource(testUrl)
-      .then((htmlString) => {
-        var doc = HTMLParser.parse(htmlString);
-        this.props.actions.retrieveFictionDetails(doc);
-        this.setState({
-          data: this.props.details.chapterInfos
-        });
-      })
-      .catch((error) => console.log(error));
+    this.props.actions.retrieveFictionDetails(this.props.url);
 
 		if (isRefreshed && this.setState({ isRefreshing: false }));
 	}
 
   render() {
     const { details } = this.props;
-		const {fictionInfo, chapterInfos} = details;
+		//const {fictionInfo, chapterInfos} = details;
     return (
         <View style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
-          <Text>{fictionInfo.title}</Text>
-          <Text>{fictionInfo.author}</Text>
+          <Text>{details.title}</Text>
+          <Text>{details.author}</Text>
           <View style={{flex:0.4, flexDirection: 'row'}}>
             <Image
               style={{flex:0.4, height:'100%', resizeMode: 'contain'}}
-              source={{uri: fictionInfo.img}}
+              source={{uri: details.img}}
             />
             <View style={{flex:0.6}}>
               <Text>Description:</Text>
                 <ScrollView style={{flex:0.5}}>
-                  <Text>{fictionInfo.desc}</Text>
+                  <Text>{details.desc}</Text>
                 </ScrollView>
             </View>
           </View>
           <FlatList
             style={{flex:0.6}}
-            data={this.state.data}
+            data={details.chapters}
             keyExtractor={this._keyExtractor}
             renderItem={({item}) => {
               return <Text>{item.title}</Text>

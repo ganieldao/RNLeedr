@@ -23,7 +23,7 @@ export function parseChapterInfos(doc) {
       title = row.querySelector('a').removeWhitespace().text;
       //The first <a> of each row contains the chapter link (without the base url)
       link = 'https://royalroadl.com' + row.querySelector('a').attributes['href'];
-      return {"date":date, "title":title, "link":link};
+      return {"date":date, "title":title, "url":link};
     })
 
     //console.log(info);

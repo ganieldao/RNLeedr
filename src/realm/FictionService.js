@@ -7,10 +7,19 @@ let FictionService = {
         return realm.objects('Fiction');
     },
 
+    getFictionByUrl(url) {
+        let obj = realm.objectForPrimaryKey('Fiction', url);
+        return obj;
+    },
+
     addFiction(data) {
-        let {fictionInfo} = data;
+        let {fictionInfo, chapterInfos} = data;
         realm.write(() => {
-            realm.create('Fiction', {title:fictionInfo.title, author:fictionInfo.author, img:fictionInfo.img}, true);
+            var chapterArray = [];
+            chapterInfos.forEach(function(chapter) {
+                chapterArray.push({title:chapter.title, date:chapter.date, url:chapter.url, content:''});
+            }, this);
+            var fiction = realm.create('Fiction', {title:fictionInfo.title, author:fictionInfo.author, img:fictionInfo.img, desc:fictionInfo.desc, url:data.url, chapters:chapterArray}, true);
         });
     }
 }

@@ -5,11 +5,13 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
 
 import {
-  fetchHtmlSource
+  fetchHtmlSource,
+  parseFictionInfo
 } from '../sources/RRLSource'
 
 import FictionService from '../realm/FictionService.js';
@@ -21,8 +23,21 @@ const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
 class FictionBrowserScreen extends Component {
 
   componentWillMount() {
-    //this._viewFiction(testUrl);
-    //FictionService.getFictions();
+    this._addFiction(testUrl);
+  }
+
+  _addFiction(url) {
+    url = testUrl; // (testUrl for now)
+    fetchHtmlSource(url) //First get the html
+      .then((htmlString) => {
+        var doc = HTMLParser.parse(htmlString); 
+        let info = parseFictionInfo(doc);
+        info['url'] = url; //Add the url to the information
+
+        //TODO ADD TO REDUX ACTIONS
+        FictionService.addFiction(info); //Add to database
+      })
+      .catch((error) => console.log(error));
   }
 
   _viewFiction(url) {
