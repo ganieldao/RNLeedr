@@ -1,13 +1,6 @@
 export default {
 	fictions: {
-		details: {
-			fictionInfo: {
-
-			},
-			chapterInfos: {
-				
-			}
-		},
+		details: {},
 		list: {},
 	}
 };

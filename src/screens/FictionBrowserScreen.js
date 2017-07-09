@@ -14,6 +14,8 @@ import {
   parseFictionInfo
 } from '../sources/RRLSource'
 
+import * as fictionActions from '../redux/actions/actions.js';
+
 import FictionService from '../realm/FictionService.js';
 
 const HTMLParser = require('fast-html-parser');
@@ -25,11 +27,10 @@ class FictionBrowserScreen extends Component {
 
   componentWillMount() {
     this._addFiction(testUrl); //For testing
-    this._addFiction(testUrl2); //Me too
+    this._addFiction(testUrl2);
   }
 
   _addFiction(url) {
-    url = testUrl; // (testUrl for now)
     fetchHtmlSource(url) //First get the html
       .then((htmlString) => {
         var doc = HTMLParser.parse(htmlString); 
@@ -37,7 +38,7 @@ class FictionBrowserScreen extends Component {
         info['url'] = url; //Add the url to the information
 
         //TODO ADD TO REDUX ACTIONS
-        FictionService.addFiction(info); //Add to database
+        this.props.actions.addFiction(info); //Add to database
       })
       .catch((error) => console.log(error));
   }
@@ -63,7 +64,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-
+    actions: bindActionCreators(fictionActions, dispatch)
 	};
 }
 

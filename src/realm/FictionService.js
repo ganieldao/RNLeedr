@@ -3,7 +3,7 @@ import realm from './Schema';
 
 let FictionService = {
     getFictions() {
-        console.log(realm.objects('Fiction'));
+        console.log(realm.objects('Fiction').length);
         return realm.objects('Fiction');
     },
 
@@ -13,6 +13,8 @@ let FictionService = {
     },
 
     addFiction(data) {
+        console.log("adding fiction to realm");
+        console.log(data);
         let {fictionInfo, chapterInfos} = data;
         realm.write(() => {
             var chapterArray = [];

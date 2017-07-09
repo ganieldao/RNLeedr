@@ -7,7 +7,8 @@ import {
   Text,
   View,
   FlatList,
-  TouchableHighlight
+  TouchableHighlight,
+  Button
 } from 'react-native';
 
 import FictionService from '../realm/FictionService.js';
@@ -37,6 +38,11 @@ class FictionListScreen extends Component {
     this._viewFiction(item);
   }
 
+  //testing purposes
+  _onPressRefresh() {
+    FictionService.getFictions();
+  }
+
   componentWillMount() {
     this.setState({
       data:FictionService.getFictions()
@@ -57,6 +63,7 @@ class FictionListScreen extends Component {
             </TouchableHighlight>
           )}
         />
+        <Button title='refresh' onPress={() => this._onPressRefresh()}/>
       </View>
     );
   }
