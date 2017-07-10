@@ -13,7 +13,7 @@ export default function (state = INITIAL_STATE, action) {
 				...state,
 				list: action.list
 			};
-		case 'ADD_FICTIONS_SUCCESS':
+		case 'ADD_FICTION_SUCCESS':
 			return {
 				...state,
 				list: action.list

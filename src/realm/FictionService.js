@@ -24,7 +24,6 @@ let FictionService = {
             fiction = realm.create('Fiction', {title:fictionInfo.title, author:fictionInfo.author, img:fictionInfo.img, desc:fictionInfo.desc, url:data.url, chapters:chapterArray}, true);
         });
         //Need some way to check if anything was updated to return to the reducer
-        return this.getFictions();
     },
 
     removeFiction(url) {
