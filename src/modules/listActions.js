@@ -25,3 +25,13 @@ export function getFictions() {
 	}
 }
 
+export function removeFiction(url) {
+    FictionService.removeFiction(url);
+    let list = FictionService.getFictions();
+
+	return {
+		type: 'REMOVE_FICTIONS_SUCCESS',
+		list:list
+	}
+}
+

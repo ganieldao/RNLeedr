@@ -21,7 +21,7 @@ class FictionInfoScreen extends Component {
   }
   
   //For flatlist, keys are the titles of the chapter
-  _keyExtractor = (item, index) => item.title;
+  _keyExtractor = (item, index) => item.url;
 
   componentWillMount() { 
     this._retrieveDetails();

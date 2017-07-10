@@ -16,6 +16,7 @@
 		"react-redux": "^5.0.5",
 		"realm": "^1.8.3",
 		"redux": "^3.7.1",
+		"redux-logger": "^3.0.6",
 		"redux-observable": "^0.14.1",
 		"redux-promise-middleware": "^4.3.0",
 		"redux-saga": "^0.15.4",

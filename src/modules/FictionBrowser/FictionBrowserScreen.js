@@ -44,7 +44,11 @@ class FictionBrowserScreen extends Component {
   }
 
   _onPress() {
-    this._addFiction(this.state.text);
+    this._addFiction(testUrl);
+  }
+
+  _onPressRem() {
+    this.props.actions.removeFiction(testUrl);
   }
 
   render() {
@@ -56,6 +60,7 @@ class FictionBrowserScreen extends Component {
         value={this.state.text}
         />
         <Button title='Add' onPress={() => this._onPress()}/>
+        <Button title='Remove' onPress={() => this._onPressRem()}/>
       </View>
     );
   }

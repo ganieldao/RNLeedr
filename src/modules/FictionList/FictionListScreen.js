@@ -21,7 +21,7 @@ class FictionListScreen extends Component {
     isRefreshing: false
   }
 
-  _keyExtractor = (item, index) => item.title;
+  _keyExtractor = (item, index) => item.url;
 
   _viewFiction(fiction) {
 		this.props.navigator.push({

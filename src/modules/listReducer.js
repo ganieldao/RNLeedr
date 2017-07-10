@@ -17,7 +17,12 @@ export default function (state = INITIAL_STATE, action) {
 			return {
 				...state,
 				list: action.list
-			}
+			};
+		case 'REMOVE_FICTIONS_SUCCESS':
+			return {
+				...state,
+				list:action.list
+			};
 		default:
 			return state;
 	}
