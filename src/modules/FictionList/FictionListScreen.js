@@ -11,7 +11,7 @@ import {
   Button
 } from 'react-native';
 
-import FictionService from '../realm/FictionService.js';
+import FictionService from '../../realm/FictionService.js';
 
 class FictionListScreen extends Component {
   state = {

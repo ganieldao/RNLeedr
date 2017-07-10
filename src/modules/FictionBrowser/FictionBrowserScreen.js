@@ -12,11 +12,11 @@ import {
 import {
   fetchHtmlSource,
   parseFictionInfo
-} from '../sources/RRLSource'
+} from '../../sources/RRLSource'
 
-import * as fictionActions from '../redux/actions/actions.js';
+import * as fictionActions from '../../redux/actions/actions.js';
 
-import FictionService from '../realm/FictionService.js';
+import FictionService from '../../realm/FictionService.js';
 
 const HTMLParser = require('fast-html-parser');
 

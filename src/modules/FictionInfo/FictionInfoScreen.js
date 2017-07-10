@@ -11,7 +11,7 @@ import {
   ScrollView
 } from 'react-native';
 
-import * as fictionActions from '../redux/actions/actions.js';
+import * as fictionActions from '../../redux/actions/actions.js';
 
 class FictionInfoScreen extends Component {
   //Default state?
