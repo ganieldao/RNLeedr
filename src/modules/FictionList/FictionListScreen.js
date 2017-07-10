@@ -11,7 +11,9 @@ import {
   Button
 } from 'react-native';
 
-import FictionService from '../../realm/FictionService.js';
+import FictionService from '../../realm/FictionService';
+
+import * as actions from './actions';
 
 class FictionListScreen extends Component {
   state = {
@@ -42,16 +44,14 @@ class FictionListScreen extends Component {
   }
 
   componentWillMount() {
-    this.setState({
-      data:FictionService.getFictions()
-    });
+    this.props.actions.getFictions();
   }
 
   render() {
     return (
       <View style={{flex:1, flexDirection:'column'}}>
         <FlatList
-          data={this.state.data}
+          data={this.props.list}
           keyExtractor={this._keyExtractor}
           renderItem={({item}) => (
             <TouchableHighlight onPress={() => this._onPressButton(item)}>
@@ -68,18 +68,20 @@ class FictionListScreen extends Component {
 }
 
 FictionListScreen.propTypes = {
-	actions: PropTypes.object,
-	navigator: PropTypes.object
+	actions: PropTypes.object.isRequired,
+  list: PropTypes.object.isRequired,
+  navigator: PropTypes.object,
 };
 
 function mapStateToProps(state, ownProps) {
 	return {
+    list:state.FictionList.list
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-
+    actions: bindActionCreators(actions, dispatch)
 	};
 }
 

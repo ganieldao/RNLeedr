@@ -11,7 +11,7 @@ import {
   ScrollView
 } from 'react-native';
 
-import * as fictionActions from './actions.js';
+import * as actions from './actions.js';
 
 class FictionInfoScreen extends Component {
   //Default state?
@@ -77,7 +77,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(fictionActions, dispatch)
+		actions: bindActionCreators(actions, dispatch)
 	};
 }
 
