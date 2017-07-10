@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
-import fictions from './reducers.js';
+
+import {FictionBrowserReducer, FictionInfoReducer} from '../../modules';
+
 const rootReducer = combineReducers({
-    fictions
+    FictionBrowser:FictionBrowserReducer,
+    FictionInfo:FictionInfoReducer
 });
 
 export default rootReducer;

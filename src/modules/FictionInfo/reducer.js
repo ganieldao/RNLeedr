@@ -1,8 +1,12 @@
-import initialState from './initialState.js'
+const INITIAL_STATE = {
+    details: {},
+    error: null
+}
 
-export default function (state = initialState.fictions, action) {
+export default function (state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case 'RETRIEVE_FICTION_DETAILS_SUCCESS':
+			console.log('success');
 			return {
 				...state,
 				details: action.details

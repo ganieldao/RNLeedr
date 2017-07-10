@@ -71,7 +71,7 @@ FictionInfoScreen.propTypes = {
 
 function mapStateToProps(state, ownProps) {
 	return {
-		details: state.fictions.details
+		details: state.FictionInfo.details
 	};
 }
 
