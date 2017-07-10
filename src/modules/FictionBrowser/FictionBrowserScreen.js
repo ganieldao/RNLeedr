@@ -14,7 +14,7 @@ import {
   parseFictionInfo
 } from '../../sources/RRLSource'
 
-import * as fictionActions from '../../redux/actions/actions.js';
+import * as fictionActions from './actions.js';
 
 import FictionService from '../../realm/FictionService.js';
 

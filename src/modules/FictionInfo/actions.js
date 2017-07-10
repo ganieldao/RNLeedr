@@ -14,11 +14,3 @@ export function retrieveFictionDetails(url) {
 		details: details
 	};
 }
-
-export function addFiction(info) {
-	FictionService.addFiction(info);
-	//Needs to return update to list if any for reducer
-	return {
-		type: 'ADD_FICTION_SUCCESS'
-	}
-}
