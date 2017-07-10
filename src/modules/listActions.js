@@ -7,10 +7,11 @@ import {
 import FictionService from '../realm/FictionService.js';
 
 export function addFiction(info) {
-	FictionService.addFiction(info);
+	let list = FictionService.addFiction(info);
 	//Needs to return update to list if any for reducer
 	return {
-		type: 'ADD_FICTION_SUCCESS'
+		type: 'ADD_FICTION_SUCCESS',
+        list:list
 	}
 }
 

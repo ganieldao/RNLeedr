@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  TextInput
 } from 'react-native';
 
 import {
@@ -14,7 +15,7 @@ import {
   parseFictionInfo
 } from '../../sources/RRLSource'
 
-import * as fictionActions from './actions.js';
+import * as listActions from '../listActions.js';
 
 import FictionService from '../../realm/FictionService.js';
 
@@ -22,12 +23,12 @@ const HTMLParser = require('fast-html-parser');
 
 const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
 const testUrl2 = 'https://royalroadl.com/fiction/4293/the-iron-teeth-a-goblins-tale';
+const testUrl3 = 'https://royalroadl.com/fiction/8463/the-arcane-emperor';
 
 class FictionBrowserScreen extends Component {
 
   componentWillMount() {
-    this._addFiction(testUrl); //For testing
-    this._addFiction(testUrl2);
+    this.state = { text: 'Useless Placeholder' };
   }
 
   _addFiction(url) {
@@ -42,10 +43,19 @@ class FictionBrowserScreen extends Component {
       .catch((error) => console.log(error));
   }
 
+  _onPress() {
+    this._addFiction(this.state.text);
+  }
+
   render() {
     return (
       <View style={{flex:1, flexDirection:'column'}}>
         <Text>Hi</Text>
+        <TextInput
+        onChangeText={(text) => this.setState({text})}
+        value={this.state.text}
+        />
+        <Button title='Add' onPress={() => this._onPress()}/>
       </View>
     );
   }
@@ -63,7 +73,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-    actions: bindActionCreators(fictionActions, dispatch)
+    actions: bindActionCreators(listActions, dispatch)
 	};
 }
 

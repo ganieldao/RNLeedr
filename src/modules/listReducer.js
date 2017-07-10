@@ -13,6 +13,11 @@ export default function (state = INITIAL_STATE, action) {
 				...state,
 				list: action.list
 			};
+		case 'ADD_FICTIONS_SUCCESS':
+			return {
+				...state,
+				list: action.list
+			}
 		default:
 			return state;
 	}
