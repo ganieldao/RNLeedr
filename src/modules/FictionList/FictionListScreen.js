@@ -13,11 +13,10 @@ import {
 
 import FictionService from '../../realm/FictionService';
 
-import * as actions from './actions';
+import * as listActions from '../listActions';
 
 class FictionListScreen extends Component {
   state = {
-    data: null,
     offset: 0,
     isRefreshing: false
   }
@@ -44,7 +43,7 @@ class FictionListScreen extends Component {
   }
 
   componentWillMount() {
-    this.props.actions.getFictions();
+    this.props.listActions.getFictions();
   }
 
   render() {
@@ -68,7 +67,7 @@ class FictionListScreen extends Component {
 }
 
 FictionListScreen.propTypes = {
-	actions: PropTypes.object.isRequired,
+	listActions: PropTypes.object.isRequired,
   list: PropTypes.object.isRequired,
   navigator: PropTypes.object,
 };
@@ -81,7 +80,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-    actions: bindActionCreators(actions, dispatch)
+    listActions: bindActionCreators(listActions, dispatch)
 	};
 }
 
