@@ -8,7 +8,8 @@ import {
   View,
   FlatList,
   Image,
-  ScrollView
+  ScrollView,
+  TouchableHighlight
 } from 'react-native';
 
 import * as actions from './actions.js';
@@ -32,6 +33,20 @@ class FictionInfoScreen extends Component {
     this.props.actions.retrieveFictionDetails(this.props.fictionKey);
 	}
 
+  _viewChapter(chapter) {
+		this.props.navigator.push({
+			screen: 'Leedr.ChapterReaderScreen',
+      title: chapter.title,
+			passProps: {
+				chapterKey:chapter.url
+			}
+		});
+	}
+
+  _onPressChapter(item) {
+    this._viewChapter(item);
+  }
+
   render() {
     const { details } = this.props;
     return (
@@ -54,9 +69,11 @@ class FictionInfoScreen extends Component {
             style={{flex:0.6}}
             data={details.chapters}
             keyExtractor={this._keyExtractor}
-            renderItem={({item}) => {
-              return <Text>{item.title}</Text> //TODO COMPONENT
-            }}
+            renderItem={({item}) => (
+              <TouchableHighlight onPress={() => this._onPressChapter(item)}>
+                <Text>{item.title}</Text>
+              </TouchableHighlight>
+            )}
           />
         </View>
     );

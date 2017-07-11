@@ -32,7 +32,7 @@ class ChapterReaderScreen extends Component {
   }
 }
 
-FictionBrowserScreen.propTypes = {
+ChapterReaderScreen.propTypes = {
 	actions: PropTypes.object,
 	navigator: PropTypes.object
 };
