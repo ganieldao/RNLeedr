@@ -5,8 +5,9 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,
+  ScrollView,
   Button,
+  WebView
 } from 'react-native';
 
 import {
@@ -20,14 +21,23 @@ const HTMLParser = require('fast-html-parser');
 
 class ChapterReaderScreen extends Component {
   componentWillMount() {
-    
+    this.props.navigator.toggleTabs({
+      to: 'hidden', 
+      animated: true 
+    });
+
+    this.props.navigator.toggleNavBar({
+      to: 'hidden', 
+      animated: true 
+    });
   }
 
   render() {
     return (
-      <View style={{flex:1, flexDirection:'column'}}>
+      <WebView source={{uri: this.props.chapterKey}}/>
+      /*<ScrollView style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
         <Text>Hi</Text>
-      </View>
+      </ScrollView>*/
     );
   }
 }
