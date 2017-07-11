@@ -26,10 +26,10 @@ class ChapterReaderScreen extends Component {
       animated: true 
     });
 
-    this.props.navigator.toggleNavBar({
+    /*this.props.navigator.toggleNavBar({
       to: 'hidden', 
       animated: true 
-    });
+    });*/
   }
 
   render() {
