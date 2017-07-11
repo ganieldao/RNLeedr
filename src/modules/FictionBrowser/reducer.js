@@ -1,10 +1,10 @@
 const INITIAL_STATE = {
-    list: [],
-    error: null
+  list: [],
+  error: null
 }
 
 export default function (state = INITIAL_STATE, action) {
-	switch (action.type) { //Following is temp
+  switch (action.type) { //Following is temp
 		case 'RETRIEVE_FICTION_DETAILS_SUCCESS':
 			return {
 				...state,

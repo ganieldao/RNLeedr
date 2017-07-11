@@ -21,14 +21,14 @@ class FictionListScreen extends Component {
     isRefreshing: false
   }
 
-  _keyExtractor = (item, index) => item.url;
+  _keyExtractor = (item, index) => item.key;
 
   _viewFiction(fiction) {
 		this.props.navigator.push({
 			screen: 'Leedr.FictionInfoScreen',
       title: fiction.title,
 			passProps: {
-				url:fiction.url
+				fictionKey:fiction.key
 			}
 		});
 	}

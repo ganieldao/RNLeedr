@@ -44,11 +44,11 @@ class FictionBrowserScreen extends Component {
   }
 
   _onPress() {
-    this._addFiction(testUrl);
+    this._addFiction(this.state.text);
   }
 
   _onPressRem() {
-    this.props.actions.removeFiction(testUrl);
+    this.props.actions.removeFiction(this.state.text);
   }
 
   render() {

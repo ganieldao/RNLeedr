@@ -28,7 +28,8 @@ class FictionInfoScreen extends Component {
   }
 
   _retrieveDetails() {
-    this.props.actions.retrieveFictionDetails(this.props.url);
+    console.log(this.props.key);
+    this.props.actions.retrieveFictionDetails(this.props.fictionKey);
 	}
 
   render() {
@@ -65,7 +66,7 @@ class FictionInfoScreen extends Component {
 FictionInfoScreen.propTypes = {
 	actions: PropTypes.object.isRequired,
 	details: PropTypes.object.isRequired,
-  url: PropTypes.string.isRequired,
+  fictionKey: PropTypes.string.isRequired,
 	navigator: PropTypes.object,
 };
 
