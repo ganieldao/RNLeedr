@@ -53,9 +53,13 @@ export function parseChapterContent(doc) {
     let node = arr[i];
     if (node.tagName === 'br') {
       finalContent += '\n';
+    } else if (node.tagName === 'p') {
+      finalContent += node.text.replace(/^\s\s*/, '').replace(/\s\s*$/, '') + '\n\n';
     } else {
-      finalContent += node.text.replace(/^\s\s*/, '').replace(/\s\s*$/, '');;
+      finalContent += node.text.replace(/^\s\s*/, '').replace(/\s\s*$/, ''); //Remove leading and trailing whitespace
     }
+
+    //Need to add table parsing
   }
 
   return finalContent;
