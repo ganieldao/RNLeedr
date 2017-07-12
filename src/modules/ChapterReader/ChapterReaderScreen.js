@@ -34,18 +34,17 @@ class ChapterReaderScreen extends Component {
     this.state = { content: 'Useless Placeholder' };
 
     let content = FictionService.getChapterContent(this.props.chapterKey);
-    if(content === '') {
+    if(content === '') { //Check if content already downloaded
       fetchHtmlSource(this.props.chapterKey) //First get the html
       .then((htmlString) => {
         var doc = HTMLParser.parse(htmlString); 
         content = parseChapterContent(doc);
 
-        //this.props.actions.addFiction(info); //Add to database
         FictionService.addChapterContent(this.props.chapterKey, content);
         this.setState({content:content});
       })
       .catch((error) => console.log(error));
-    } else {
+    } else { //Already have content, just display
       this.setState({content:content});
     }
   }

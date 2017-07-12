@@ -46,6 +46,17 @@ export function parseFictionInfo(doc) {
 }
 
 export function parseChapterContent(doc) {
-  console.log(doc.querySelector('.chapter-content').structuredText);
-  return doc.querySelector('.chapter-content').structuredText;
+  let finalContent = "";
+  let arr = doc.querySelector('.chapter-content')['childNodes'];
+
+  for(i = 0; i < arr.length; i++) {
+    let node = arr[i];
+    if (node.tagName === 'br') {
+      finalContent += '\n';
+    } else {
+      finalContent += node.text.replace(/^\s\s*/, '').replace(/\s\s*$/, '');;
+    }
+  }
+
+  return finalContent;
 }
