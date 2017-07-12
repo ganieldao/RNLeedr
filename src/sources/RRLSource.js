@@ -46,29 +46,30 @@ export function parseFictionInfo(doc) {
 }
 
 export function parseChapterContent(doc) {
-  let arr = doc.querySelector('.chapter-content')['childNodes'];
-  return formatParse(arr);
+  let nodes = doc.querySelector('.chapter-content')['childNodes'];
+  return formatParse(nodes);
 }
 
 
 function formatParse(arr) {
     let finalContent = "";
-
-    for(i = 0; i < arr.length; i++) {
+    for(let i = 0; i < arr.length; i++) {
       let node = arr[i];
       if (node.tagName === 'br') {
         finalContent += '\n';
       } else if (node.tagName === 'p') {
-        if(node.childNodes.length > 1) {
-          finalContent += formatParse(node['childNodes']).replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+        if(node['childNodes'].length > 1) {
+          finalContent += formatParse(node['childNodes']);
         } else {
-          finalContent += node.text + '\n\n';
+          finalContent += node.text + '\n';
         }
       } else {
-        finalContent += node.text.replace(/^\s\s*/, '').replace(/\s\s*$/, ''); //Remove leading and trailing whitespace
+        finalContent += node.text;
       }
+
+
     //Need to add table parsing
     }
 
-    return finalContent
+    return finalContent.replace(/^\s\s*/, '').replace(/\s\s*$/, '')  //Remove leading and trailing whitespace
   }
