@@ -1,1 +1,1 @@
-import Leedr from ".src/Leedr";
+import App from './src/app';
