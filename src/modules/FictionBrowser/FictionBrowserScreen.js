@@ -44,7 +44,7 @@ class FictionBrowserScreen extends Component {
   }
 
   _onPress() {
-    this._addFiction(this.state.text);
+    this._addFiction('https://royalroadl.com/fiction/' + this.state.text);
   }
 
   _onPressRem() {

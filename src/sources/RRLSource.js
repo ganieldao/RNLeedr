@@ -46,21 +46,29 @@ export function parseFictionInfo(doc) {
 }
 
 export function parseChapterContent(doc) {
-  let finalContent = "";
   let arr = doc.querySelector('.chapter-content')['childNodes'];
+  return formatParse(arr);
+}
 
-  for(i = 0; i < arr.length; i++) {
-    let node = arr[i];
-    if (node.tagName === 'br') {
-      finalContent += '\n';
-    } else if (node.tagName === 'p') {
-      finalContent += node.text.replace(/^\s\s*/, '').replace(/\s\s*$/, '') + '\n\n';
-    } else {
-      finalContent += node.text.replace(/^\s\s*/, '').replace(/\s\s*$/, ''); //Remove leading and trailing whitespace
+
+function formatParse(arr) {
+    let finalContent = "";
+
+    for(i = 0; i < arr.length; i++) {
+      let node = arr[i];
+      if (node.tagName === 'br') {
+        finalContent += '\n';
+      } else if (node.tagName === 'p') {
+        if(node.childNodes.length > 1) {
+          finalContent += formatParse(node['childNodes']).replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+        } else {
+          finalContent += node.text + '\n\n';
+        }
+      } else {
+        finalContent += node.text.replace(/^\s\s*/, '').replace(/\s\s*$/, ''); //Remove leading and trailing whitespace
+      }
+    //Need to add table parsing
     }
 
-    //Need to add table parsing
+    return finalContent
   }
-
-  return finalContent;
-}

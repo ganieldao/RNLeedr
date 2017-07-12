@@ -40,7 +40,7 @@ class ChapterReaderScreen extends Component {
         var doc = HTMLParser.parse(htmlString); 
         content = parseChapterContent(doc);
 
-        FictionService.addChapterContent(this.props.chapterKey, content);
+        //FictionService.addChapterContent(this.props.chapterKey, content);
         this.setState({content:content});
       })
       .catch((error) => console.log(error));
