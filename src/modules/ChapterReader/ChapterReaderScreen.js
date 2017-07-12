@@ -12,7 +12,7 @@ import {
 
 import {
   fetchHtmlSource,
-  parseFictionInfo
+  parseChapterContent
 } from '../../sources/RRLSource'
 
 import FictionService from '../../realm/FictionService.js';
@@ -30,14 +30,32 @@ class ChapterReaderScreen extends Component {
       to: 'hidden', 
       animated: true 
     });*/
+
+    this.state = { content: 'Useless Placeholder' };
+
+    let content = FictionService.getChapterContent(this.props.chapterKey);
+    if(content === '') {
+      fetchHtmlSource(this.props.chapterKey) //First get the html
+      .then((htmlString) => {
+        var doc = HTMLParser.parse(htmlString); 
+        content = parseChapterContent(doc);
+
+        //this.props.actions.addFiction(info); //Add to database
+        FictionService.addChapterContent(this.props.chapterKey, content);
+        this.setState({content:content});
+      })
+      .catch((error) => console.log(error));
+    } else {
+      this.setState({content:content});
+    }
   }
 
   render() {
     return (
-      <WebView source={{uri: this.props.chapterKey}}/>
-      /*<ScrollView style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
-        <Text>Hi</Text>
-      </ScrollView>*/
+      //<WebView source={{uri: this.props.chapterKey}}/>
+      <ScrollView style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
+        <Text>{this.state.content}</Text>
+      </ScrollView>
     );
   }
 }

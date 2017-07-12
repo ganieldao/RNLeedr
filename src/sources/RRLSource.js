@@ -47,4 +47,5 @@ export function parseFictionInfo(doc) {
 
 export function parseChapterContent(doc) {
   console.log(doc.querySelector('.chapter-content').structuredText);
+  return doc.querySelector('.chapter-content').structuredText;
 }

@@ -2,6 +2,19 @@ import Realm from 'realm';
 import realm from './Schema';
 
 let FictionService = {
+
+  getChapterContent(chapterKey) {
+    let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
+    return obj.content;
+  },
+
+  addChapterContent(chapterKey, content) {
+    let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
+    realm.write(() => {
+      obj.content = content;
+    });
+  },
+
   getFictions() {
     //console.log(realm.objects('Fiction').length);
     return realm.objects('Fiction');
