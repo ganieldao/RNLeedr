@@ -13,6 +13,7 @@ import {
 
 export default class FictionInfoScreen extends Component {
   componentWillMount() { 
+    console.log('yay me');
     this.state = {
       color:'blue'
     };

@@ -3,7 +3,9 @@ export * from './FictionInfo'
 export * from './FictionList'
 export * from './ChapterReader'
 
-import ListReducer from './listReducer.js'
+import ListReducer from './listReducer'
+import FictionInfoReducer from './fictionInfoReducer'
 
 export * from './listActions';
-export {ListReducer};
+export * from './fictionInfoActions';
+export {ListReducer, FictionInfoReducer};

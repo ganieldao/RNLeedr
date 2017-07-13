@@ -12,7 +12,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import * as actions from './actions.js';
+import * as actions from '../fictionInfoActions.js';
 
 import ChapterRow from './Components/ChapterRow';
 
@@ -31,7 +31,6 @@ class FictionInfoScreen extends Component {
   }
 
   _retrieveDetails() {
-    //console.log(this.props.key);
     this.props.actions.retrieveFictionDetails(this.props.fictionKey);
 	}
 
@@ -40,7 +39,8 @@ class FictionInfoScreen extends Component {
 			screen: 'Leedr.ChapterReaderScreen',
       title: chapter.title,
 			passProps: {
-				chapterKey:chapter.url
+        chapterKey:chapter.url,
+        fictionKey:this.props.fictionKey
 			}
 		});
 	}
@@ -51,6 +51,9 @@ class FictionInfoScreen extends Component {
 
   render() {
     const { details } = this.props;
+    const { chapters} = details;
+
+    console.log("RERENDERING");
     return (
         <View style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
           <Text>{details.title}</Text>
@@ -69,7 +72,8 @@ class FictionInfoScreen extends Component {
           </View>
           <FlatList
             style={{flex:0.6}}
-            data={details.chapters}
+            data={chapters}
+            extraData={details}
             keyExtractor={this._keyExtractor}
             renderItem={({item}) => (
               <ChapterRow onPressChapter={() => this._onPressChapter(item)} item={item}/>

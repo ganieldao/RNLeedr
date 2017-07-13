@@ -15,7 +15,7 @@ import {
   parseChapterContent
 } from '../../sources/RRLSource'
 
-import * as actions from './actions.js';
+import * as actions from '../fictionInfoActions.js';
 
 import FictionService from '../../realm/FictionService.js';
 
@@ -60,7 +60,7 @@ class ChapterReaderScreen extends Component {
           var doc = HTMLParser.parse(htmlString); 
           content = parseChapterContent(doc);
 
-          this.props.actions.addChapterContent(this.props.chapterKey, content);
+          this.props.actions.addChapterContent(this.props.chapterKey, this.props.fictionKey, content);
       })
       .catch((error) => console.log(error));
       }
@@ -92,8 +92,8 @@ ChapterReaderScreen.propTypes = {
 
 function mapStateToProps(state, ownProps) {
 	return {
-    content:state.ChapterReader.content,
-    contentDownloaded:state.ChapterReader.contentDownloaded
+    content:state.FictionInfo.content,
+    contentDownloaded:state.FictionInfo.contentDownloaded
 	};
 }
 
