@@ -29,7 +29,7 @@ class FictionInfoScreen extends Component {
   }
 
   _retrieveDetails() {
-    console.log(this.props.key);
+    //console.log(this.props.key);
     this.props.actions.retrieveFictionDetails(this.props.fictionKey);
 	}
 

@@ -1,5 +1,5 @@
 import ChapterReaderScreen from './ChapterReaderScreen';
-//import FictionListReducer from './reducer.js'
+import ChapterReaderReducer from './reducer.js'
 
-//export * from './actions';
-export {ChapterReaderScreen};
+export * from './actions';
+export {ChapterReaderScreen, ChapterReaderReducer};

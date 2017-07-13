@@ -69,6 +69,7 @@ function formatParse(arr) {
 
 
     //Need to add table parsing
+    //Need to remove prevChapter/nextChapter table at the end
     }
 
     return finalContent.replace(/^\s\s*/, '').replace(/\s\s*$/, '')  //Remove leading and trailing whitespace

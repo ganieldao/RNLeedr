@@ -7,13 +7,15 @@ import {
   Text,
   ScrollView,
   Button,
-  WebView
+  WebView,
 } from 'react-native';
 
 import {
   fetchHtmlSource,
   parseChapterContent
 } from '../../sources/RRLSource'
+
+import * as actions from './actions.js';
 
 import FictionService from '../../realm/FictionService.js';
 
@@ -31,46 +33,58 @@ class ChapterReaderScreen extends Component {
       animated: true 
     });*/
 
-    this.state = { content: 'Useless Placeholder' };
+    this.state = { content: 'Loading' };
 
-    let content = FictionService.getChapterContent(this.props.chapterKey);
+    this.props.actions.retrieveChapterContent(this.props.chapterKey);
+
+    /*let content = FictionService.getChapterContent(this.props.chapterKey);
     if(content === '') { //Check if content already downloaded
       fetchHtmlSource(this.props.chapterKey) //First get the html
       .then((htmlString) => {
         var doc = HTMLParser.parse(htmlString); 
         content = parseChapterContent(doc);
 
-        //FictionService.addChapterContent(this.props.chapterKey, content);
+        FictionService.addChapterContent(this.props.chapterKey, content);
         this.setState({content:content});
       })
       .catch((error) => console.log(error));
     } else { //Already have content, just display
       this.setState({content:content});
-    }
+    }*/
   }
 
   render() {
-    return (
-      //<WebView source={{uri: this.props.chapterKey}}/>
-      <ScrollView style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
-        <Text>{this.state.content}</Text>
-      </ScrollView>
-    );
+    if(this.props.contentDownloaded) {
+      return (
+        <ScrollView style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
+          <Text>{this.props.content}</Text>
+        </ScrollView>
+      )
+    } else {
+      return (
+        <WebView source={{uri: this.props.chapterKey}}/>
+      )
+    }
   }
 }
 
 ChapterReaderScreen.propTypes = {
 	actions: PropTypes.object,
-	navigator: PropTypes.object
+  navigator: PropTypes.object,
+  content: PropTypes.string,
+  contentDownloaded: PropTypes.bool
 };
 
 function mapStateToProps(state, ownProps) {
 	return {
+    content:state.ChapterReader.content,
+    contentDownloaded:state.ChapterReader.contentDownloaded
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
+    actions: bindActionCreators(actions, dispatch)
 	};
 }
 
