@@ -12,6 +12,12 @@ export default function (state = INITIAL_STATE, action) {
 				content:action.content,
 				contentDownloaded:action.contentDownloaded
 			};
+		case 'ADD_CHAPTER_CONTENT_SUCCESS':
+			return {
+				...state,
+				content:action.content,
+				contentDownloaded:action.contentDownloaded
+			}
 		default:
 			return state;
 	}

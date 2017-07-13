@@ -19,3 +19,13 @@ export function retrieveChapterContent(key) {
     contentDownloaded:contentDownloaded
   }
 }
+
+export function addChapterContent(key, content) {
+  FictionService.addChapterContent(key, content);
+
+  return {
+    type: 'ADD_CHAPTER_CONTENT_SUCCESS',
+    content:content,
+    contentDownloaded:true
+  }
+}

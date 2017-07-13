@@ -22,6 +22,18 @@ import FictionService from '../../realm/FictionService.js';
 const HTMLParser = require('fast-html-parser');
 
 class ChapterReaderScreen extends Component {
+  static navigatorButtons = {
+    rightButtons: [
+      {
+        title: 'Download', // for a textual button, provide the button title (label)
+        id: 'download', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+        buttonFontSize: 14, // Set font size for the button (can also be used in setButtons function to set different button style programatically)
+        buttonFontWeight: '600', // Set font weight for the button (can also be used in setButtons function to set different button style programatically)
+      }
+    ]
+  };
+
+
   componentWillMount() {
     this.props.navigator.toggleTabs({
       to: 'hidden', 
@@ -37,21 +49,24 @@ class ChapterReaderScreen extends Component {
 
     this.props.actions.retrieveChapterContent(this.props.chapterKey);
 
-    /*let content = FictionService.getChapterContent(this.props.chapterKey);
-    if(content === '') { //Check if content already downloaded
-      fetchHtmlSource(this.props.chapterKey) //First get the html
-      .then((htmlString) => {
-        var doc = HTMLParser.parse(htmlString); 
-        content = parseChapterContent(doc);
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+  }
 
-        FictionService.addChapterContent(this.props.chapterKey, content);
-        this.setState({content:content});
+  onNavigatorEvent(event) { // this is the onPress handler for the two buttons together
+    if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
+      if (event.id == 'download') { // this is the same id field from the static navigatorButtons definition
+        fetchHtmlSource(this.props.chapterKey) //First get the html
+        .then((htmlString) => {
+          var doc = HTMLParser.parse(htmlString); 
+          content = parseChapterContent(doc);
+
+          this.props.actions.addChapterContent(this.props.chapterKey, content);
       })
       .catch((error) => console.log(error));
-    } else { //Already have content, just display
-      this.setState({content:content});
-    }*/
+      }
+    }
   }
+
 
   render() {
     if(this.props.contentDownloaded) {

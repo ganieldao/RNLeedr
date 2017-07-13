@@ -13,6 +13,7 @@ let FictionService = {
     realm.write(() => {
       obj.content = content;
     });
+    return obj.content;
   },
 
   getFictions() {
