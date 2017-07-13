@@ -35,7 +35,7 @@ export function parseFictionInfo(doc) {
   var info = {};
   info['title'] = doc.querySelector('h1').text;
   info['author'] = doc.querySelector('h4').querySelector('a').text;
-  info['desc'] = doc.querySelector('.hidden-content').structuredText;
+  info['desc'] = formatParse(doc.querySelector('.hidden-content')['childNodes']);
   info['img'] = doc.querySelector('.fic-header').querySelector('img').rawAttributes['src'];
   //Title + author and remove any non-alphanumeric, remove spaces, then lowercase
   info['key'] = ('rr' + info['title'] + info['author']).replace(/[^\w\s]|_/g, "").replace(/\s+/g, '').toLowerCase();;
@@ -50,7 +50,7 @@ export function parseChapterContent(doc) {
   return formatParse(nodes);
 }
 
-
+//Takes array of nodes containing text to be parsed
 function formatParse(arr) {
     let finalContent = "";
     for(let i = 0; i < arr.length; i++) {
