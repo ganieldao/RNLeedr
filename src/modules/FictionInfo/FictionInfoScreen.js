@@ -14,6 +14,8 @@ import {
 
 import * as actions from './actions.js';
 
+import ChapterRow from './Components/ChapterRow';
+
 class FictionInfoScreen extends Component {
   //Default state?
   state = {
@@ -70,9 +72,7 @@ class FictionInfoScreen extends Component {
             data={details.chapters}
             keyExtractor={this._keyExtractor}
             renderItem={({item}) => (
-              <TouchableHighlight onPress={() => this._onPressChapter(item)}>
-                <Text>{item.title}</Text>
-              </TouchableHighlight>
+              <ChapterRow onPressChapter={() => this._onPressChapter(item)} item={item}/>
             )}
           />
         </View>
