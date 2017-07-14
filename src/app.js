@@ -11,13 +11,13 @@ registerScreens(store, Provider); //register all of the app's screens
 Navigation.startTabBasedApp({
   tabs: [
     {
-      label: 'One',
+      label: 'Fiction List',
       screen: 'Leedr.FictionListScreen', // this is a registered name for a screen
       icon: require('./res/one.png'),
       title: 'Fiction List'
     },
     {
-      label: 'Two',
+      label: 'Fiction Browser',
       screen: 'Leedr.FictionBrowserScreen', // this is a registered name for a screen
       icon: require('./res/one.png'),
       title: 'Fiction Browser'

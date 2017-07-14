@@ -11,10 +11,22 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-const ChapterRow = ({onPressFiction, item}) => {
+const FictionRow = ({onPressFiction, item}) => {
+  console.log(item.img);
   return (<TouchableHighlight onPress={() => onPressFiction()}>
-    <Text>{item.title}</Text>
+    <View style={{flexDirection:'row'}}>
+      <View>
+        <Image
+          style={{height:100, width:100, resizeMode: 'contain'}}
+          source={{uri: item.img}}
+        />
+      </View>
+      <View>
+        <Text>{item.title}</Text>
+        <Text>{item.author}</Text>
+      </View>
+    </View>
   </TouchableHighlight>);
 }
 
-export default ChapterRow
+export default FictionRow

@@ -38,12 +38,7 @@ class FictionListScreen extends Component {
   _onPressButton(item) {
     this._viewFiction(item);
   }
-
-  //testing purposes
-  _onPressRefresh() {
-    FictionService.getFictions();
-  }
-
+  
   componentWillMount() {
     this.props.listActions.getFictions();
   }
@@ -58,7 +53,6 @@ class FictionListScreen extends Component {
             <FictionRow onPressFiction={() => this._onPressButton(item)} item={item}/>
           )}
         />
-        <Button title='refresh' onPress={() => this._onPressRefresh()}/>
       </View>
     );
   }
