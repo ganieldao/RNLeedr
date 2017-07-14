@@ -22,6 +22,8 @@ class FictionInfoScreen extends Component {
     offset: 0,
     isRefreshing: false,
   }
+
+  oldChapters = this.props.details.chapters;
   
   //For flatlist, keys are the titles of the chapter
   _keyExtractor = (item, index) => item.url;
@@ -53,7 +55,6 @@ class FictionInfoScreen extends Component {
     const { details } = this.props;
     const { chapters} = details;
 
-    console.log("RERENDERING");
     return (
         <View style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
           <Text>{details.title}</Text>
@@ -73,7 +74,6 @@ class FictionInfoScreen extends Component {
           <FlatList
             style={{flex:0.6}}
             data={chapters}
-            extraData={details}
             keyExtractor={this._keyExtractor}
             renderItem={({item}) => (
               <ChapterRow onPressChapter={() => this._onPressChapter(item)} item={item}/>

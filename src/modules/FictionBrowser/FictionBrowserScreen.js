@@ -28,7 +28,7 @@ const testUrl3 = 'https://royalroadl.com/fiction/8463/the-arcane-emperor';
 class FictionBrowserScreen extends Component {
 
   componentWillMount() {
-    this.state = { text: '8894' };
+    this.state = { text: '12563' };
   }
 
   _addFiction(url) {

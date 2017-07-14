@@ -11,9 +11,8 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-export default class FictionInfoScreen extends Component {
+/*export default class ChapterRow extends Component {
   componentWillMount() { 
-    console.log('yay me');
     this.state = {
       color:'blue'
     };
@@ -31,4 +30,17 @@ export default class FictionInfoScreen extends Component {
       </TouchableHighlight>
     );
   }
+}*/
+
+const ChapterRow = ({onPressChapter, item}) => {
+  let color = 'blue';
+  if(item.content === '') {
+    color = 'red';
+  }
+
+  return (<TouchableHighlight onPress={() => onPressChapter()}>
+    <Text style={{color:color}}>{item.title}</Text>
+  </TouchableHighlight>);
 }
+
+export default ChapterRow
