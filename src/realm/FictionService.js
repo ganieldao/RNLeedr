@@ -41,11 +41,10 @@ let FictionService = {
         author:fictionInfo.author, 
         img:fictionInfo.img, 
         desc:fictionInfo.desc, 
-        url:data.url, 
+        url:fictionInfo.url, 
         chapters:chapterArray
       }, true);
     });
-    //Need some way to check if anything was updated to return to the reducer
   },
 
   removeFiction(url) {

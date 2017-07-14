@@ -12,14 +12,12 @@ import {
 
 import {
   fetchHtmlSource,
-  parseChapterContent
+  getChapterContent
 } from '../../sources/RRLSource'
 
 import * as actions from '../fictionInfoActions.js';
 
 import FictionService from '../../realm/FictionService.js';
-
-const HTMLParser = require('fast-html-parser');
 
 class ChapterReaderScreen extends Component {
   static navigatorButtons = {
@@ -55,13 +53,10 @@ class ChapterReaderScreen extends Component {
   onNavigatorEvent(event) { // this is the onPress handler for the two buttons together
     if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
       if (event.id == 'download') { // this is the same id field from the static navigatorButtons definition
-        fetchHtmlSource(this.props.chapterKey) //First get the html
-        .then((htmlString) => {
-          var doc = HTMLParser.parse(htmlString); 
-          content = parseChapterContent(doc);
-
+        getChapterContent(this.props.chapterKey).then((chapterContent) => {
+          content = chapterContent;
           this.props.actions.addChapterContent(this.props.chapterKey, this.props.fictionKey, content);
-      })
+        })
       .catch((error) => console.log(error));
       }
     }

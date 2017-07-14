@@ -12,14 +12,12 @@ import {
 
 import {
   fetchHtmlSource,
-  parseFictionInfo
+  getFictionInfo
 } from '../../sources/RRLSource'
 
 import * as listActions from '../listActions.js';
 
 import FictionService from '../../realm/FictionService.js';
-
-const HTMLParser = require('fast-html-parser');
 
 const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
 const testUrl2 = 'https://royalroadl.com/fiction/4293/the-iron-teeth-a-goblins-tale';
@@ -32,15 +30,10 @@ class FictionBrowserScreen extends Component {
   }
 
   _addFiction(url) {
-    fetchHtmlSource(url) //First get the html
-      .then((htmlString) => {
-        var doc = HTMLParser.parse(htmlString); 
-        let info = parseFictionInfo(doc);
-        info['url'] = url; //Add the url to the information
-
-        this.props.actions.addFiction(info); //Add to database
-      })
-      .catch((error) => console.log(error));
+    getFictionInfo(url).then((info) => {
+      this.props.actions.addFiction(info); //Add to database
+    })
+    .catch((error) => console.log(error));
   }
 
   _onPress() {

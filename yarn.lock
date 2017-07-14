@@ -2646,6 +2646,10 @@ lodash.templatesettings@^3.0.0:
     lodash._reinterpolate "^3.0.0"
     lodash.escape "^3.0.0"
 
+lodash@4.11.1:
+  version "4.11.1"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.11.1.tgz#a32106eb8e2ec8e82c241611414773c9df15f8bc"
+
 lodash@4.x.x, lodash@^4.14.0, lodash@^4.16.6, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
@@ -2840,6 +2844,14 @@ negotiator@0.5.3:
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+
+node-base64-image@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/node-base64-image/-/node-base64-image-1.0.4.tgz#807cf1d6f53e34c4e9ea309e41f6552591c0db53"
+  dependencies:
+    lodash "4.11.1"
+    polygoat "1.1.4"
+    request "2.81.0"
 
 node-fetch@^1.0.1, node-fetch@^1.3.3, node-fetch@^1.6.3:
   version "1.7.1"
@@ -3119,6 +3131,10 @@ plist@^1.2.0:
     util-deprecate "1.0.2"
     xmlbuilder "4.0.0"
     xmldom "0.1.x"
+
+polygoat@1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/polygoat/-/polygoat-1.1.4.tgz#329f9a0d1b2d4a45149e2539523c6f7dfd850a5f"
 
 prelude-ls@~1.1.2:
   version "1.1.2"
@@ -3562,7 +3578,7 @@ replace-ext@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-0.0.1.tgz#29bbd92078a739f0bcce2b4ee41e837953522924"
 
-request@^2.78.0, request@^2.79.0, request@^2.81.0:
+request@2.81.0, request@^2.78.0, request@^2.79.0, request@^2.81.0:
   version "2.81.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
   dependencies:

@@ -1,11 +1,12 @@
+const HTMLParser = require('fast-html-parser');
 
 export async function fetchHtmlSource(url) {
-  console.log("time to fetch");
+  console.log("time to fetch", url);
   let body;
   try {
     const response = await fetch(url);
     body = response['_bodyInit'];
-    //console.log(body);
+    console.log(body);
   } catch (err) {
     console.log('fetch failed', err);
   } 
@@ -30,6 +31,21 @@ export function parseChapterInfos(doc) {
   return info
 }
 
+export async function getFictionInfo(url) {
+  let info = {};
+  let chapterInfos = {};
+  try {
+    const htmlString = await fetchHtmlSource(url) //First get the html
+    var doc = HTMLParser.parse(htmlString); 
+    info = parseFictionInfo(doc);
+    info['url'] = url; //Add the url to the information
+    chapterInfos = parseChapterInfos(doc);
+  } catch (err) {
+    console.log('Get fiction info failed', err);
+  }
+  return {fictionInfo:info, chapterInfos:chapterInfos};
+}
+
 export function parseFictionInfo(doc) {
   //Maybe include fiction tags?
   var info = {};
@@ -41,8 +57,19 @@ export function parseFictionInfo(doc) {
   info['key'] = ('rr' + info['title'] + info['author']).replace(/[^\w\s]|_/g, "").replace(/\s+/g, '').toLowerCase();;
   //console.log(info);
 
-  var chapterInfos = parseChapterInfos(doc);
-  return {fictionInfo:info, chapterInfos:chapterInfos};
+  return info;
+}
+
+export async function getChapterContent(url) {
+  let content = '';
+  try {
+    let htmlString = await fetchHtmlSource(url) //First get the html
+    var doc = HTMLParser.parse(htmlString); 
+    content = parseChapterContent(doc);
+  } catch (err) {
+    console.log('Get chapter content failed', err);
+  }
+  return content;
 }
 
 export function parseChapterContent(doc) {
