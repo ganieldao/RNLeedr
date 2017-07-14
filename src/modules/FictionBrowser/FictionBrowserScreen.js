@@ -15,13 +15,9 @@ import {
   getFictionInfo
 } from '../../sources/RRLSource'
 
-import * as listActions from '../listActions.js';
+import * as listActions from '../listActions';
 
-import FictionService from '../../realm/FictionService.js';
-
-const testUrl = 'https://royalroadl.com/fiction/1439/forgotten-conqueror';
-const testUrl2 = 'https://royalroadl.com/fiction/4293/the-iron-teeth-a-goblins-tale';
-const testUrl3 = 'https://royalroadl.com/fiction/8463/the-arcane-emperor';
+import FictionService from '../../realm/FictionService';
 
 class FictionBrowserScreen extends Component {
 

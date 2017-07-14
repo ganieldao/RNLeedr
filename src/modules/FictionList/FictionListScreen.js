@@ -13,6 +13,8 @@ import {
 
 import FictionService from '../../realm/FictionService';
 
+import FictionRow from './Components/FictionRow'
+
 import * as listActions from '../listActions';
 
 class FictionListScreen extends Component {
@@ -53,11 +55,7 @@ class FictionListScreen extends Component {
           data={this.props.list}
           keyExtractor={this._keyExtractor}
           renderItem={({item}) => (
-            <TouchableHighlight onPress={() => this._onPressButton(item)}>
-              <View style={{backgroundColor: 'white'}}>
-                <Text>{item.title}</Text>
-              </View>
-            </TouchableHighlight>
+            <FictionRow onPressFiction={() => this._onPressButton(item)} item={item}/>
           )}
         />
         <Button title='refresh' onPress={() => this._onPressRefresh()}/>

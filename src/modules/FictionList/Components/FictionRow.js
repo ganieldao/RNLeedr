@@ -11,14 +11,9 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-const ChapterRow = ({onPressChapter, item}) => {
-  let color = 'blue';
-  if(item.content === '') {
-    color = 'red';
-  }
-
-  return (<TouchableHighlight onPress={() => onPressChapter()}>
-    <Text style={{color:color}}>{item.title}</Text>
+const ChapterRow = ({onPressFiction, item}) => {
+  return (<TouchableHighlight onPress={() => onPressFiction()}>
+    <Text>{item.title}</Text>
   </TouchableHighlight>);
 }
 
