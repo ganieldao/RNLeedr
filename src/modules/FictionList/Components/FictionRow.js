@@ -13,16 +13,16 @@ import {
 
 const FictionRow = ({onPressFiction, item}) => {
   console.log(item.img);
-  return (<TouchableHighlight onPress={() => onPressFiction()}>
+  return (<TouchableHighlight underlayColor='gray' onPress={() => onPressFiction()}>
     <View style={{flexDirection:'row'}}>
       <View>
         <Image
-          style={{height:100, width:100, resizeMode: 'contain'}}
+          style={{height:90, width:100, resizeMode: 'contain'}}
           source={{uri: item.img}}
         />
       </View>
       <View>
-        <Text>{item.title}</Text>
+        <Text style={{fontWeight:'bold'}}>{item.title}</Text>
         <Text>{item.author}</Text>
       </View>
     </View>

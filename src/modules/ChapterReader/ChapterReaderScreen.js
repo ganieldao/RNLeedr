@@ -33,11 +33,6 @@ class ChapterReaderScreen extends Component {
 
 
   componentWillMount() {
-    this.props.navigator.toggleTabs({
-      to: 'hidden', 
-      animated: true 
-    });
-
     /*this.props.navigator.toggleNavBar({
       to: 'hidden', 
       animated: true 
@@ -59,6 +54,26 @@ class ChapterReaderScreen extends Component {
         })
       .catch((error) => console.log(error));
       }
+    } else {
+      switch(event.id) {
+        case 'willAppear':
+          this.props.navigator.toggleTabs({
+            to: 'hidden', 
+            animated: true 
+          });
+        case 'didAppear':
+
+          break;
+        case 'willDisappear':
+          this.props.navigator.toggleTabs({
+            to: 'shown', 
+            animated: true 
+          });
+          break;
+        case 'didDisappear':
+
+          break;
+    }
     }
   }
 

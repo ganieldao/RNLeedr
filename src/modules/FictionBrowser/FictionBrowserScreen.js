@@ -20,6 +20,10 @@ import * as listActions from '../listActions';
 import FictionService from '../../realm/FictionService';
 
 class FictionBrowserScreen extends Component {
+  static navigatorStyle = {
+    drawUnderNavBar: false,
+    navBarTranslucent: true
+  };
 
   componentWillMount() {
     this.state = { text: '12563' };
@@ -37,19 +41,21 @@ class FictionBrowserScreen extends Component {
   }
 
   _onPressRem() {
-    this.props.actions.removeFiction(this.state.text);
+    //this.props.actions.removeFiction(this.state.text);
   }
 
   render() {
     return (
-      <View style={{flex:1, flexDirection:'column'}}>
-        <Text>Hi</Text>
+      <View style={{flex:1, flexDirection:'column', justifyContent:'flex-start'}}>
         <TextInput
-        onChangeText={(text) => this.setState({text})}
-        value={this.state.text}
+          style={{flex:0.2, textAlign:'center'}}
+          onChangeText={(text) => this.setState({text})}
+          value={this.state.text}
         />
-        <Button title='Add' onPress={() => this._onPress()}/>
-        <Button title='Remove' onPress={() => this._onPressRem()}/>
+        <View style={{flex:0.8}}>
+        <Button style={{flex:0.4}} title='Add' onPress={() => this._onPress()}/>
+        <Button style={{flex:0.4}} title='Remove' onPress={() => this._onPressRem()}/>
+        </View>
       </View>
     );
   }
