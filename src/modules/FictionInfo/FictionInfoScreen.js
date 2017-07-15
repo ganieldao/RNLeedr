@@ -76,7 +76,17 @@ class FictionInfoScreen extends Component {
           <FlatList
             style={{flex:0.6}}
             data={chapters}
+            ItemSeparatorComponent={() => (
+              <View
+                style={{
+                  height: 1,
+                  width: "86%",
+                  backgroundColor: "#CED0CE",
+                  marginLeft: "14%"
+                }}
+              />)}
             keyExtractor={this._keyExtractor}
+            containerStyle={{ borderBottomWidth: 0 }}
             renderItem={({item}) => (
               <ChapterRow 
                 onPressChapter={debounce(() => this._onPressChapter(item), 1000, {

@@ -31,6 +31,9 @@ class ChapterReaderScreen extends Component {
     ]
   };
 
+  static navigatorStyle = {
+    drawUnderTabBar: true
+  };
 
   componentWillMount() {
     /*this.props.navigator.toggleNavBar({
@@ -59,7 +62,7 @@ class ChapterReaderScreen extends Component {
         case 'willAppear':
           this.props.navigator.toggleTabs({
             to: 'hidden', 
-            animated: true 
+            animated: true
           });
         case 'didAppear':
 

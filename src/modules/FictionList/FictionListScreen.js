@@ -51,6 +51,16 @@ class FictionListScreen extends Component {
         <FlatList
           data={this.props.list}
           keyExtractor={this._keyExtractor}
+          ItemSeparatorComponent={() => (
+            <View
+              style={{
+                height: 1,
+                width: "86%",
+                backgroundColor: "#CED0CE",
+                marginLeft: "14%"
+              }}
+            />
+          )}
           renderItem={({item}) => (
             <FictionRow 
               onPressFiction={debounce(() => this._onPressButton(item), 1000, {
