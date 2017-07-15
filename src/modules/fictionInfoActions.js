@@ -36,6 +36,17 @@ export function retrieveChapterContent(key) {
   }
 }
 
+export function removeChapterContent(key, fictionKey) {
+  FictionService.removeChapterContent(key);
+  let details = FictionService.getFictionByKey(fictionKey);
+  return {
+    type: 'REMOVE_CHAPTER_CONTENT_SUCCESS',
+    content:'',
+    contentDownloaded:false,
+    details:details
+  }
+}
+
 export function addChapterContent(chapterKey, fictionKey, content) {
   FictionService.addChapterContent(chapterKey, content);
   let details = FictionService.getFictionByKey(fictionKey);

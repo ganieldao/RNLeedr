@@ -40,10 +40,6 @@ class FictionBrowserScreen extends Component {
     this._addFiction('https://royalroadl.com/fiction/' + this.state.text);
   }
 
-  _onPressRem() {
-    //this.props.actions.removeFiction(this.state.text);
-  }
-
   render() {
     return (
       <View style={{flex:1, flexDirection:'column', justifyContent:'flex-start'}}>
@@ -53,8 +49,7 @@ class FictionBrowserScreen extends Component {
           value={this.state.text}
         />
         <View style={{flex:0.8}}>
-        <Button style={{flex:0.4}} title='Add' onPress={() => this._onPress()}/>
-        <Button style={{flex:0.4}} title='Remove' onPress={() => this._onPressRem()}/>
+        <Button style={{flex:1}} title='Add' onPress={() => this._onPress()}/>
         </View>
       </View>
     );

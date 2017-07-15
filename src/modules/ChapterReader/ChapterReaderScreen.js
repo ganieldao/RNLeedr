@@ -31,7 +31,14 @@ var switchButton = {
   id: 'switch',
   buttonFontSize: 14,
   buttonFontWeight: '600'
-}
+};
+
+var deleteButton = {
+  title: 'Delete',
+  id: 'delete',
+  buttonFontSize: 14,
+  buttonFontWeight: '600'
+};
 
 class ChapterReaderScreen extends Component {
   static navigatorButtons = {
@@ -57,22 +64,29 @@ class ChapterReaderScreen extends Component {
 
   _updateButtons() {
     if(this.props.contentDownloaded) {
-      this.props.navigator.setButtons({rightButtons:[switchButton]})
+      this.props.navigator.setButtons({rightButtons:[switchButton, deleteButton]})
     } else {
       this.props.navigator.setButtons({rightButtons:[downloadButton]})
     }
   }
 
-  onNavigatorEvent(event) { // this is the onPress handler for the two buttons together
+  onNavigatorEvent(event) {
     if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
-      if (event.id == 'download') { // this is the same id field from the static navigatorButtons definition
-        getChapterContent(this.props.chapterKey).then((chapterContent) => {
-          content = chapterContent;
-          this.props.actions.addChapterContent(this.props.chapterKey, this.props.fictionKey, content);
-        })
-      .catch((error) => console.log(error));
-      } else if (event.id == 'switch') {
-        this.setState({web:!this.state.web});
+      switch(event.id) {
+        case 'download':
+          getChapterContent(this.props.chapterKey).then((chapterContent) => {
+            content = chapterContent;
+            this.props.actions.addChapterContent(this.props.chapterKey, this.props.fictionKey, content);
+          })
+          .catch((error) => console.log(error));
+        break;
+        case 'switch':
+          this.setState({web:!this.state.web});
+        break;
+        case 'delete':
+          this.props.navigator.pop();
+          this.props.actions.removeChapterContent(this.props.chapterKey, this.props.fictionKey);
+        break;
       }
     } else {
       switch(event.id) {

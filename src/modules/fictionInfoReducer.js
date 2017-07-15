@@ -21,6 +21,13 @@ export default function (state = INITIAL_STATE, action) {
 				contentDownloaded:action.contentDownloaded,
 				details:action.details
 			};
+		case 'REMOVE_CHAPTER_CONTENT_SUCCESS':
+			return {
+				...state,
+				content:action.content,
+				contentDownloaded:action.contentDownloaded,
+				details:action.details
+			}
 		case 'RETRIEVE_FICTION_DETAILS_SUCCESS':
 			return {
 				...state,

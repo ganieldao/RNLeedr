@@ -16,6 +16,14 @@ let FictionService = {
     return obj.content;
   },
 
+  removeChapterContent(chapterKey) {
+    let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
+    realm.write(() => {
+      obj.content = '';
+    });
+    return obj.content;
+  },
+
   getFictions() {
     //console.log(realm.objects('Fiction').length);
     return realm.objects('Fiction');
