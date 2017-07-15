@@ -59,6 +59,8 @@ class ChapterReaderScreen extends Component {
 
     this.props.actions.retrieveChapterContent(this.props.chapterKey);
 
+    offset = FictionService.getChapterOffset(this.props.chapterKey);
+
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
   }
 
@@ -68,6 +70,10 @@ class ChapterReaderScreen extends Component {
     } else {
       this.props.navigator.setButtons({rightButtons:[downloadButton]})
     }
+  }
+
+  _handleScrollEnd(event) {
+    FictionService.updateChapterOffset(this.props.chapterKey, event.nativeEvent.contentOffset.y);
   }
 
   onNavigatorEvent(event) {
@@ -116,7 +122,7 @@ class ChapterReaderScreen extends Component {
     this._updateButtons();
     if(this.props.contentDownloaded && !this.state.web) {
       return (
-        <ScrollView style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
+        <ScrollView onLayout={() => this.refs._scrollView.scrollTo({x:0, y:offset, animated:false})} ref='_scrollView' onScrollEndDrag={(event) => this._handleScrollEnd(event)} style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
           <Text style={{marginLeft:'5%', marginRight:'5%', fontSize:18}}>{this.props.content}</Text>
         </ScrollView>
       )

@@ -21,7 +21,8 @@ const ChapterSchema = {
     title: 'string',
     date: 'string',
     url: 'string',
-    content: 'string'
+    content: 'string',
+    offset: {type:'int', default:0}
   }
 }
 
