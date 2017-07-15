@@ -17,6 +17,8 @@ import FictionRow from './Components/FictionRow'
 
 import * as listActions from '../listActions';
 
+var debounce = require('lodash.debounce');
+
 class FictionListScreen extends Component {
   state = {
     offset: 0,
@@ -50,8 +52,13 @@ class FictionListScreen extends Component {
           data={this.props.list}
           keyExtractor={this._keyExtractor}
           renderItem={({item}) => (
-            <FictionRow onPressFiction={() => this._onPressButton(item)} item={item}/>
-          )}
+            <FictionRow 
+              onPressFiction={debounce(() => this._onPressButton(item), 1000, {
+                leading: true,
+                trailing: false
+              })} item={item}
+            />
+          )}s
         />
       </View>
     );

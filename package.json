@@ -9,6 +9,7 @@
 	"dependencies": {
 		"base-64": "^0.1.0",
 		"fast-html-parser": "^1.0.1",
+		"lodash.debounce": "^4.0.8",
 		"node-base64-image": "^1.0.4",
 		"react": "16.0.0-alpha.12",
 		"react-apollo": "^1.4.2",

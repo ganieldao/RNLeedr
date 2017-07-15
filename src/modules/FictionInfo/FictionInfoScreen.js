@@ -16,6 +16,8 @@ import * as actions from '../fictionInfoActions.js';
 
 import ChapterRow from './Components/ChapterRow';
 
+var debounce = require('lodash.debounce');
+
 class FictionInfoScreen extends Component {
   //Default state?
   state = {
@@ -76,7 +78,13 @@ class FictionInfoScreen extends Component {
             data={chapters}
             keyExtractor={this._keyExtractor}
             renderItem={({item}) => (
-              <ChapterRow onPressChapter={() => this._onPressChapter(item)} item={item}/>
+              <ChapterRow 
+                onPressChapter={debounce(() => this._onPressChapter(item), 1000, {
+                  leading: true,
+                  trailing: false
+                })}
+                item={item}
+              />
             )}
           />
         </View>
