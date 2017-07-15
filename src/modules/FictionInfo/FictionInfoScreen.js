@@ -36,8 +36,6 @@ class FictionInfoScreen extends Component {
     offset: 0,
     isRefreshing: false,
   }
-
-  oldChapters = this.props.details.chapters;
   
   //For flatlist, keys are the url of the chapter
   _keyExtractor = (item, index) => item.url;
@@ -52,6 +50,7 @@ class FictionInfoScreen extends Component {
       if (event.id == 'delete') { // this is the same id field from the static navigatorButtons definition
         this.props.navigator.pop();
         this.props.listActions.removeFiction(this.props.fictionKey);
+        this.props.infoActions.clearFictionDetails();
       }
     }
   }

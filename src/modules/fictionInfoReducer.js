@@ -26,6 +26,11 @@ export default function (state = INITIAL_STATE, action) {
 				...state,
 				details: action.details
 			};
+		case 'CLEAR_FICTION_DETAILS_SUCCESS':
+			return {
+				...state,
+				details: action.details
+			}
 		default:
 			return state;
 	}

@@ -6,8 +6,15 @@ import {
 
 import FictionService from '../realm/FictionService.js';
 
+export function clearFictionDetails() {
+  return {
+    type: 'CLEAR_FICTION_DETAILS_SUCCESS',
+    details: {}
+  }
+}
+
 export function retrieveFictionDetails(key) {
-  console.log("retrieve fiction details");
+  console.log("retrieve fiction details ", key);
 	let details = FictionService.getFictionByKey(key);
 	return {
 		type: 'RETRIEVE_FICTION_DETAILS_SUCCESS',
