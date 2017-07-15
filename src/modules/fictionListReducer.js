@@ -18,6 +18,11 @@ export default function (state = INITIAL_STATE, action) {
 				...state,
 				list: action.list
 			};
+		case 'REMOVE_FICTION_SUCCESS':
+			return {
+				...state,
+				list:action.list
+			}
 		case 'REMOVE_FICTIONS_SUCCESS':
 			return {
 				...state,

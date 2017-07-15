@@ -47,8 +47,8 @@ let FictionService = {
     });
   },
 
-  removeFiction(url) {
-    let obj = realm.objectForPrimaryKey('Fiction', url);
+  removeFiction(key) {
+    let obj = realm.objectForPrimaryKey('Fiction', key);
     realm.write(() => {
       realm.delete(obj);
     })

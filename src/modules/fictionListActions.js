@@ -9,9 +9,17 @@ import FictionService from '../realm/FictionService.js';
 export function addFiction(info) {
   FictionService.addFiction(info);
   let list = FictionService.getFictions();
-  //Needs to return update to list if any for reducer
   return {
 	  type: 'ADD_FICTION_SUCCESS',
+    list:list
+  }
+}
+
+export function removeFiction(key) {
+  FictionService.removeFiction(key);
+  let list = FictionService.getFictions();
+  return {
+    type: 'REMOVE_FICTION_SUCCESS',
     list:list
   }
 }
@@ -24,15 +32,5 @@ export function getFictions() {
     type: 'GET_FICTIONS_SUCCESS',
 	  list:list
   }
-}
-
-export function removeFiction(url) {
-  FictionService.removeFiction(url);
-  let list = FictionService.getFictions();
-
-	return {
-		type: 'REMOVE_FICTIONS_SUCCESS',
-		list:list
-	}
 }
 

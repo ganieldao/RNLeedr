@@ -12,13 +12,25 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import * as actions from '../fictionInfoActions.js';
+import * as infoActions from '../fictionInfoActions';
+import * as listActions from '../fictionListActions'
 
 import ChapterRow from './Components/ChapterRow';
 
 var debounce = require('lodash.debounce');
 
 class FictionInfoScreen extends Component {
+  static navigatorButtons = {
+    rightButtons: [
+      {
+        title: 'Delete', // for a textual button, provide the button title (label)
+        id: 'delete', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+        buttonFontSize: 14, // Set font size for the button (can also be used in setButtons function to set different button style programatically)
+        buttonFontWeight: '600', // Set font weight for the button (can also be used in setButtons function to set different button style programatically)
+      }
+    ]
+  };
+  
   //Default state?
   state = {
     offset: 0,
@@ -27,15 +39,25 @@ class FictionInfoScreen extends Component {
 
   oldChapters = this.props.details.chapters;
   
-  //For flatlist, keys are the titles of the chapter
+  //For flatlist, keys are the url of the chapter
   _keyExtractor = (item, index) => item.url;
 
   componentWillMount() { 
     this._retrieveDetails();
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+  }
+
+  onNavigatorEvent(event) { // this is the onPress handler for the two buttons together
+    if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
+      if (event.id == 'delete') { // this is the same id field from the static navigatorButtons definition
+        this.props.navigator.pop();
+        this.props.listActions.removeFiction(this.props.fictionKey);
+      }
+    }
   }
 
   _retrieveDetails() {
-    this.props.actions.retrieveFictionDetails(this.props.fictionKey);
+    this.props.infoActions.retrieveFictionDetails(this.props.fictionKey);
 	}
 
   _viewChapter(chapter) {
@@ -103,7 +125,8 @@ class FictionInfoScreen extends Component {
 }
 
 FictionInfoScreen.propTypes = {
-	actions: PropTypes.object.isRequired,
+  listActions: PropTypes.object.isRequired,
+  infoActions: PropTypes.object.isRequired,
 	details: PropTypes.object.isRequired,
   fictionKey: PropTypes.string.isRequired,
 	navigator: PropTypes.object,
@@ -117,7 +140,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(actions, dispatch)
+    listActions: bindActionCreators(listActions, dispatch),
+    infoActions: bindActionCreators(infoActions, dispatch)
 	};
 }
 

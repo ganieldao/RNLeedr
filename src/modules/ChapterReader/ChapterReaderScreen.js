@@ -76,7 +76,7 @@ class ChapterReaderScreen extends Component {
         case 'didDisappear':
 
           break;
-    }
+      }
     }
   }
 
