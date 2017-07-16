@@ -68,7 +68,7 @@ class FictionInfoScreen extends Component {
     this.props.infoActions.retrieveFictionDetails(this.props.fictionKey);
 	}
 
-  _viewChapter(chapter) {
+  _viewChapter(chapter, index) {
 		this.props.navigator.push({
 			screen: 'Leedr.ChapterReaderScreen',
       title: chapter.title,
@@ -77,13 +77,14 @@ class FictionInfoScreen extends Component {
         fictionKey:this.props.fictionKey
 			}
     });
+    this.props.infoActions.updateFictionCurrent(this.props.fictionKey, index);
     if(!chapter.read) { //Update the read status of the chapter
       this.props.infoActions.updateChapterRead(chapter.url, this.props.fictionKey, true);
     }
 	}
 
-  _onPressChapter(item) {
-    this._viewChapter(item);
+  _onPressChapter(item, index) {
+    this._viewChapter(item, index);
   }
 
   render() {
@@ -121,13 +122,14 @@ class FictionInfoScreen extends Component {
             intialNumToRender='10'
             keyExtractor={this._keyExtractor}
             containerStyle={{ borderBottomWidth: 0 }}
-            renderItem={({item}) => (
+            renderItem={({item, index}) => (
               <ChapterRow 
-                onPressChapter={debounce(() => this._onPressChapter(item), 1000, {
+                onPressChapter={debounce(() => this._onPressChapter(item, index), 1000, {
                   leading: true,
                   trailing: false
                 })}
                 item={item}
+                current={index == details.current}
               />
             )}
           />

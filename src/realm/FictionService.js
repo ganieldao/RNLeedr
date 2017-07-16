@@ -30,6 +30,13 @@ let FictionService = {
     });
   },
 
+  updateFictionCurrent(fictionKey, current) {
+    let obj = realm.objectForPrimaryKey('Fiction', fictionKey);
+    realm.write(() => {
+      obj.current = current;
+    });
+  },
+
   getChapterOffset(chapterKey) {
     let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
     return obj.offset;

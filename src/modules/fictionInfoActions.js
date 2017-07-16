@@ -66,3 +66,12 @@ export function updateChapterRead(chapterKey, fictionKey, read) {
     details:details
   }
 }
+
+export function updateFictionCurrent(fictionKey, current) {
+  FictionService.updateFictionCurrent(fictionKey, current);
+  let details = FictionService.getFictionByKey(fictionKey);
+  return {
+    type: 'UPDATE_FICTION_CURRENT_SUCCESS',
+    details:details
+  }
+}

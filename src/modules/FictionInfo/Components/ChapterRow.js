@@ -13,10 +13,14 @@ import {
 
 const icon = require('../../../res/one.png')
 
-const ChapterRow = ({onPressChapter, item}) => {
+const ChapterRow = ({onPressChapter, item, current}) => {
   let color = 'blue';
   if(item.content === '') {
     color = 'red';
+  }
+
+  if(current) {
+    color = 'green';
   }
 
   return (<TouchableHighlight underlayColor='gray' onPress={() => onPressChapter()}>

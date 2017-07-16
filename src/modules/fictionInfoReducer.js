@@ -33,6 +33,11 @@ export default function (state = INITIAL_STATE, action) {
 				...state,
 				details:action.details
 			};
+		case 'UPDATE_FICTION_CURRENT_SUCCESS':
+			return {
+				...state,
+				details:action.details
+			};
 		case 'RETRIEVE_FICTION_DETAILS_SUCCESS':
 			return {
 				...state,

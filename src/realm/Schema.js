@@ -10,6 +10,7 @@ const FictionSchema = {
     img: 'string',
     url: 'string',
     desc: 'string',
+    current: {type: 'int', default:0},
     chapters: {type: 'list', objectType:'Chapter'}
   }
 };
