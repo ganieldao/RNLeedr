@@ -6,7 +6,6 @@ export async function fetchHtmlSource(url) {
   try {
     const response = await fetch(url);
     body = response['_bodyInit'];
-    console.log(body);
   } catch (err) {
     console.log('fetch failed', err);
   } 
