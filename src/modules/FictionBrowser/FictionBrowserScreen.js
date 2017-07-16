@@ -7,7 +7,9 @@ import {
   Text,
   View,
   Button,
-  TextInput
+  TextInput,
+  ActivityIndicator,
+  Alert
 } from 'react-native';
 
 import {
@@ -26,14 +28,27 @@ class FictionBrowserScreen extends Component {
   };
 
   componentWillMount() {
-    this.state = { text: '12563' };
+    this.state = { text: '12563', isLoading: false};
   }
 
   _addFiction(url) {
+    this.setState({isLoading:true});
     getFictionInfo(url).then((info) => {
       this.props.actions.addFiction(info); //Add to database
+      this.setState({isLoading:false});
+      Alert.alert(
+        'Success',
+        'Fiction added',
+      )
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      this.setState({isLoading:false});
+      Alert.alert(
+        ':(',
+        'Something went wrong'
+      )
+      console.log(error);
+    });
   }
 
   _onPress() {
@@ -43,6 +58,24 @@ class FictionBrowserScreen extends Component {
   render() {
     return (
       <View style={{flex:1, flexDirection:'column', justifyContent:'flex-start'}}>
+        {this.state.isLoading &&
+          <View style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 8,
+          }}>
+            <ActivityIndicator 
+              animating={true}
+              color="black"
+            />
+            <Text>Adding Fiction...</Text>
+          </View>
+        }
         <TextInput
           style={{flex:0.2, textAlign:'center'}}
           onChangeText={(text) => this.setState({text})}

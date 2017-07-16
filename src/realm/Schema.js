@@ -22,7 +22,8 @@ const ChapterSchema = {
     date: 'string',
     url: 'string',
     content: 'string',
-    offset: {type:'int', default:0}
+    offset: {type:'int', default:0},
+    read: {type:'bool', default:false}
   }
 }
 

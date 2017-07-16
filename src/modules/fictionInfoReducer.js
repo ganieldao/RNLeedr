@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
 	content: "",
 	contentDownloaded:false,
-	details:{},
+	details:{chapters:[]},
   error: null
 }
 

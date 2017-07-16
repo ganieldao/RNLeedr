@@ -18,7 +18,7 @@ const ChapterRow = ({onPressChapter, item}) => {
   }
 
   return (<TouchableHighlight underlayColor='gray' onPress={() => onPressChapter()}>
-    <View>
+    <View style={{marginTop:'1%', marginBottom:'1%'}}>
       <Text style={{color:color, fontWeight:'bold'}}>{item.title}</Text>
       <Text style={{color:color}}>{item.date}</Text>
     </View>

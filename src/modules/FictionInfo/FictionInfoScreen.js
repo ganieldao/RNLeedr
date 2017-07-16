@@ -106,6 +106,7 @@ class FictionInfoScreen extends Component {
                   marginLeft: "14%"
                 }}
               />)}
+            intialNumToRender='15'
             keyExtractor={this._keyExtractor}
             containerStyle={{ borderBottomWidth: 0 }}
             renderItem={({item}) => (
