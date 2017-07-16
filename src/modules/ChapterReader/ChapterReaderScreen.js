@@ -86,7 +86,7 @@ class ChapterReaderScreen extends Component {
           .catch((error) => console.log(error));
         break;
         case 'menu':
-          this.refs._menu.open();
+          this.refs._menuContext.toggleMenu('chapterMenu');
         break;
       }
     } else {
@@ -100,13 +100,13 @@ class ChapterReaderScreen extends Component {
 
           break;
         case 'willDisappear':
+          this.refs._menuContext.closeMenu();
+          break;
+        case 'didDisappear':
           this.props.navigator.toggleTabs({
             to: 'shown', 
             animated: true 
           });
-          break;
-        case 'didDisappear':
-
           break;
       }
     }
@@ -125,8 +125,8 @@ class ChapterReaderScreen extends Component {
   render() {
     this._updateButtons();
     return (
-      <MenuContext>
-        <Menu ref='_menu' style={{alignItems:'flex-end'}}>
+      <MenuContext ref='_menuContext'>
+        <Menu name='chapterMenu' ref='_menu' style={{alignItems:'flex-end'}}>
           <MenuTrigger/>
           <MenuOptions>
             <MenuOption onSelect={() => this._switchReader()} text='Switch' />
