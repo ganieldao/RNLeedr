@@ -3288,6 +3288,10 @@ react-native-navigation@^1.1.131:
   dependencies:
     lodash "4.x.x"
 
+react-native-popup-menu@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-popup-menu/-/react-native-popup-menu-0.8.0.tgz#8c89b86b744848dfbe6cbdd087a79bfc4f406cdd"
+
 react-native@0.45.1:
   version "0.45.1"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.45.1.tgz#b3283c4a88233421f9c662a2ff1a4ccc8a9f07c0"

@@ -15,6 +15,7 @@
 		"react-apollo": "^1.4.2",
 		"react-native": "0.45.1",
 		"react-native-navigation": "^1.1.131",
+		"react-native-popup-menu": "^0.8.0",
 		"react-redux": "^5.0.5",
 		"realm": "^1.8.3",
 		"redux": "^3.7.1",

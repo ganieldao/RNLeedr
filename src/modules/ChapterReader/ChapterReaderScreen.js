@@ -9,6 +9,12 @@ import {
   Button,
   WebView,
 } from 'react-native';
+import { MenuContext,
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger
+} from 'react-native-popup-menu';
 
 import {
   fetchHtmlSource,
@@ -26,16 +32,9 @@ var downloadButton = {
   buttonFontWeight: '600' // Set font weight for the button (can also be used in setButtons function to set different button style programatically)
 };
 
-var switchButton = {
-  title: 'Switch',
-  id: 'switch',
-  buttonFontSize: 14,
-  buttonFontWeight: '600'
-};
-
-var deleteButton = {
-  title: 'Delete',
-  id: 'delete',
+var menuButton = {
+  title: 'Menu',
+  id: 'menu',
   buttonFontSize: 14,
   buttonFontWeight: '600'
 };
@@ -66,7 +65,7 @@ class ChapterReaderScreen extends Component {
 
   _updateButtons() {
     if(this.props.contentDownloaded) {
-      this.props.navigator.setButtons({rightButtons:[switchButton, deleteButton]})
+      this.props.navigator.setButtons({rightButtons:[menuButton]})
     } else {
       this.props.navigator.setButtons({rightButtons:[downloadButton]})
     }
@@ -86,12 +85,8 @@ class ChapterReaderScreen extends Component {
           })
           .catch((error) => console.log(error));
         break;
-        case 'switch':
-          this.setState({web:!this.state.web});
-        break;
-        case 'delete':
-          this.props.navigator.pop();
-          this.props.actions.removeChapterContent(this.props.chapterKey, this.props.fictionKey);
+        case 'menu':
+          this.refs._menu.open();
         break;
       }
     } else {
@@ -117,20 +112,35 @@ class ChapterReaderScreen extends Component {
     }
   }
 
+  //Switch between webpage and parsed content if available 
+  _switchReader() {
+    this.setState({web:!this.state.web});
+  }
+
+  _deleteChapter() {
+    this.props.navigator.pop();
+    this.props.actions.removeChapterContent(this.props.chapterKey, this.props.fictionKey);
+  }
 
   render() {
     this._updateButtons();
-    if(this.props.contentDownloaded && !this.state.web) {
-      return (
+    return (
+      <MenuContext>
+        <Menu ref='_menu' style={{alignItems:'flex-end'}}>
+          <MenuTrigger/>
+          <MenuOptions>
+            <MenuOption onSelect={() => this._switchReader()} text='Switch' />
+            <MenuOption onSelect={() => this._deleteChapter()} >
+              <Text style={{color: 'red'}}>Delete</Text>
+            </MenuOption>
+          </MenuOptions>
+        </Menu>
+        {this.props.contentDownloaded && !this.state.web?
         <ScrollView onLayout={() => this.refs._scrollView.scrollTo({x:0, y:offset, animated:false})} ref='_scrollView' onScrollEndDrag={(event) => this._handleScrollEnd(event)} style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
           <Text style={{marginLeft:'5%', marginRight:'5%', marginBottom:'10%', marginTop:'5%', fontSize:18}}>{this.props.content}</Text>
-        </ScrollView>
-      )
-    } else {
-      return (
-        <WebView source={{uri: this.props.chapterKey}}/>
-      )
-    }
+        </ScrollView>:<WebView source={{uri: this.props.chapterKey}}/>}
+      </MenuContext>
+    )
   }
 }
 
