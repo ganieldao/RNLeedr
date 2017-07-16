@@ -18,9 +18,14 @@ const ChapterRow = ({onPressChapter, item}) => {
   }
 
   return (<TouchableHighlight underlayColor='gray' onPress={() => onPressChapter()}>
-    <View style={{marginTop:'1%', marginBottom:'1%'}}>
-      <Text style={{color:color, fontWeight:'bold'}}>{item.title}</Text>
-      <Text style={{color:color}}>{item.date}</Text>
+    <View style={{flex:1, marginTop:'1%', marginBottom:'1%', flexDirection:'row'}}>
+      <View style={{flex: 0.1, justifyContent:'center', alignItems:'center'}}>
+        <Image source={require('../../../res/one.png')}/>
+      </View>
+      <View style={{flex: 0.9, flexDirection:'column'}}>
+        <Text style={{color:color, fontWeight:'bold'}}>{item.title}</Text>
+        <Text style={{color:color}}>{item.date}</Text>
+      </View>
     </View>
   </TouchableHighlight>);
 }
