@@ -82,7 +82,7 @@ class FictionInfoScreen extends Component {
         <View style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
           <Text>{details.title}</Text>
           <Text>{details.author}</Text>
-          <View style={{flex:0.4, flexDirection: 'row'}}>
+          <View style={{flex:0.4, marginBottom:'5%', marginTop:'5%', flexDirection: 'row'}}>
             <Image
               style={{flex:0.4, height:'100%', resizeMode: 'contain'}}
               source={{uri: details.img}}
@@ -106,7 +106,7 @@ class FictionInfoScreen extends Component {
                   marginLeft: "14%"
                 }}
               />)}
-            intialNumToRender='15'
+            intialNumToRender='10'
             keyExtractor={this._keyExtractor}
             containerStyle={{ borderBottomWidth: 0 }}
             renderItem={({item}) => (

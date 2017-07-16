@@ -123,7 +123,7 @@ class ChapterReaderScreen extends Component {
     if(this.props.contentDownloaded && !this.state.web) {
       return (
         <ScrollView onLayout={() => this.refs._scrollView.scrollTo({x:0, y:offset, animated:false})} ref='_scrollView' onScrollEndDrag={(event) => this._handleScrollEnd(event)} style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
-          <Text style={{marginLeft:'5%', marginRight:'5%', fontSize:18}}>{this.props.content}</Text>
+          <Text style={{marginLeft:'5%', marginRight:'5%', marginBottom:'10%', marginTop:'5%', fontSize:18}}>{this.props.content}</Text>
         </ScrollView>
       )
     } else {
