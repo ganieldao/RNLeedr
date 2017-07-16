@@ -69,6 +69,7 @@ class FictionInfoScreen extends Component {
 	}
 
   _viewChapter(chapter, index) {
+    console.log('View Chapter');
 		this.props.navigator.push({
 			screen: 'Leedr.ChapterReaderScreen',
       title: chapter.title,

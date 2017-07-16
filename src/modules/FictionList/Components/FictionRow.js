@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 
 const FictionRow = ({onPressFiction, item}) => {
-  console.log(item.img);
   return (<TouchableHighlight underlayColor='gray' onPress={() => onPressFiction()}>
     <View style={{flexDirection:'row'}}>
       <View>

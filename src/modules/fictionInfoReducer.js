@@ -14,7 +14,6 @@ export default function (state = INITIAL_STATE, action) {
 				contentDownloaded:action.contentDownloaded
 			};
 		case 'ADD_CHAPTER_CONTENT_SUCCESS':
-			console.log("details ", action.details);
 			return {
 				...state,
 				content:action.content,
