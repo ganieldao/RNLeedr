@@ -57,3 +57,12 @@ export function addChapterContent(chapterKey, fictionKey, content) {
     details:details
   }
 }
+
+export function updateChapterRead(chapterKey, fictionKey, read) {
+  FictionService.updateChapterRead(chapterKey, read);
+  let details = FictionService.getFictionByKey(fictionKey);
+  return {
+    type: 'UPDATE_CHAPTER_READ_SUCCESS',
+    details:details
+  }
+}

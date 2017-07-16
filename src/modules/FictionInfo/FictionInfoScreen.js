@@ -19,17 +19,14 @@ import ChapterRow from './Components/ChapterRow';
 
 var debounce = require('lodash.debounce');
 
+const deleteButton = {
+  title: 'Delete', // for a textual button, provide the button title (label)
+  id: 'delete', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+  buttonFontSize: 14, // Set font size for the button (can also be used in setButtons function to set different button style programatically)
+  buttonFontWeight: '600', // Set font weight for the button (can also be used in setButtons function to set different button style programatically)
+};
+
 class FictionInfoScreen extends Component {
-  static navigatorButtons = {
-    rightButtons: [
-      {
-        title: 'Delete', // for a textual button, provide the button title (label)
-        id: 'delete', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
-        buttonFontSize: 14, // Set font size for the button (can also be used in setButtons function to set different button style programatically)
-        buttonFontWeight: '600', // Set font weight for the button (can also be used in setButtons function to set different button style programatically)
-      }
-    ]
-  };
   
   //Default state?
   state = {
@@ -52,6 +49,18 @@ class FictionInfoScreen extends Component {
         this.props.listActions.removeFiction(this.props.fictionKey);
         this.props.infoActions.clearFictionDetails();
       }
+    } else {
+      switch(event.id) {
+        case 'willAppear':
+          this.props.navigator.setButtons({rightButtons:[deleteButton]});
+          break;
+        case 'didAppear':
+          break;
+        case 'willDisappear':
+          break;
+        case 'didDisappear':
+          break;
+      }
     }
   }
 
@@ -67,7 +76,10 @@ class FictionInfoScreen extends Component {
         chapterKey:chapter.url,
         fictionKey:this.props.fictionKey
 			}
-		});
+    });
+    if(!chapter.read) { //Update the read status of the chapter
+      this.props.infoActions.updateChapterRead(chapter.url, this.props.fictionKey, true);
+    }
 	}
 
   _onPressChapter(item) {
