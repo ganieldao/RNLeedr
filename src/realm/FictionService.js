@@ -4,12 +4,12 @@ import realm from './Schema';
 let FictionService = {
 
   getChapterContent(chapterKey) {
-    let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
+    let obj = realm.objectForPrimaryKey('ChapterDetail', chapterKey);
     return obj.content;
   },
 
   addChapterContent(chapterKey, content) {
-    let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
+    let obj = realm.objectForPrimaryKey('ChapterDetail', chapterKey);
     realm.write(() => {
       obj.content = content;
     });
@@ -31,7 +31,7 @@ let FictionService = {
   },
 
   updateFictionCurrent(fictionKey, current) {
-    let obj = realm.objectForPrimaryKey('Fiction', fictionKey);
+    let obj = realm.objectForPrimaryKey('FictionDetail', fictionKey);
     realm.write(() => {
       obj.current = current;
     });
@@ -51,12 +51,11 @@ let FictionService = {
   },
 
   getFictions() {
-    //console.log(realm.objects('Fiction').length);
-    return realm.objects('Fiction');
+    return realm.objects('FictionEntry');
   },
 
   getFictionByKey(key) {
-    let obj = realm.objectForPrimaryKey('Fiction', key);
+    let obj = realm.objectForPrimaryKey('FictionDetail', key);
     return obj;
   },
 
@@ -65,20 +64,25 @@ let FictionService = {
     let fiction;
     let {fictionInfo, chapterInfos} = data;
     realm.write(() => {
-      let chapterArray = [];
-        chapterInfos.forEach(function(chapter) {
-          chapterArray.push({title:chapter.title, date:chapter.date, url:chapter.url, content:''});
-        }, this);
-      fiction = realm.create('Fiction', {
+      let chapterEntryArray = [];
+      chapterInfos.forEach(function(chapter) {
+        chapterEntryArray.push({title:chapter.title, date:chapter.date, url:chapter.url});
+        realm.create('ChapterDetail', {url:chapter.url, content:''}, true);
+      }, this);
+      fictionEntry = realm.create('FictionEntry', {
         key:fictionInfo.key,
         title:fictionInfo.title, 
         author:fictionInfo.author, 
         img:fictionInfo.img, 
+      }, true);
+      fictionDetail = realm.create('FictionDetail', {
+        key:fictionInfo.key,
         desc:fictionInfo.desc, 
         url:fictionInfo.url, 
-        chapters:chapterArray
-      }, true);
+        chapters:chapterEntryArray
+      }, true)
     });
+    console.log('Done');
   },
 
   removeFiction(key) {

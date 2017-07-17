@@ -13,12 +13,11 @@ export function clearFictionDetails() {
   }
 }
 
-export function retrieveFictionDetails(key) {
-  console.log("retrieve fiction details ", key);
-	let details = FictionService.getFictionByKey(key);
+export function retrieveFictionDetails(fictionEntry) {
+  let details = FictionService.getFictionByKey(fictionEntry.key);
 	return {
 		type: 'RETRIEVE_FICTION_DETAILS_SUCCESS',
-		details: details
+		details: {...details, title:fictionEntry.title, author:fictionEntry.author, url:fictionEntry.url, img:fictionEntry.img}
 	};
 }
 

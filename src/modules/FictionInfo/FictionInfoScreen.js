@@ -46,7 +46,7 @@ class FictionInfoScreen extends Component {
     if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
       if (event.id == 'delete') { // this is the same id field from the static navigatorButtons definition
         this.props.navigator.pop();
-        this.props.listActions.removeFiction(this.props.fictionKey);
+        this.props.listActions.removeFiction(this.props.fictionEntry.key);
         this.props.infoActions.clearFictionDetails();
       }
     } else {
@@ -65,10 +65,10 @@ class FictionInfoScreen extends Component {
   }
 
   _retrieveDetails() {
-    this.props.infoActions.retrieveFictionDetails(this.props.fictionKey);
+    this.props.infoActions.retrieveFictionDetails(this.props.fictionEntry);
 	}
 
-  _viewChapter(chapter, index) {
+  _viewChapter(chapterEntry, index) {
     console.log('View Chapter');
     this.props.navigator.toggleTabs({
             to: 'hidden', 
@@ -76,16 +76,16 @@ class FictionInfoScreen extends Component {
     });
 		this.props.navigator.push({
 			screen: 'Leedr.ChapterReaderScreen',
-      title: chapter.title,
+      title: chapterEntry.title,
 			passProps: {
-        chapterKey:chapter.url,
-        fictionKey:this.props.fictionKey
+        chapterEntry:chapterEntry,
+        fictionEntry:this.props.fictionEntry
 			}
     });
-    this.props.infoActions.updateFictionCurrent(this.props.fictionKey, index);
+    /*this.props.infoActions.updateFictionCurrent(this.props.fictionKey, index);
     if(!chapter.read) { //Update the read status of the chapter
       this.props.infoActions.updateChapterRead(chapter.url, this.props.fictionKey, true);
-    }
+    }*/
 	}
 
   _onPressChapter(item, index) {
@@ -147,7 +147,7 @@ FictionInfoScreen.propTypes = {
   listActions: PropTypes.object.isRequired,
   infoActions: PropTypes.object.isRequired,
 	details: PropTypes.object.isRequired,
-  fictionKey: PropTypes.string.isRequired,
+  fictionEntry: PropTypes.object.isRequired,
 	navigator: PropTypes.object,
 };
 
