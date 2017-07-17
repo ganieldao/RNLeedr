@@ -101,12 +101,12 @@ class ChapterReaderScreen extends Component {
           break;
         case 'willDisappear':
           this.refs._menuContext.closeMenu();
-          break;
-        case 'didDisappear':
           this.props.navigator.toggleTabs({
             to: 'shown', 
             animated: true 
           });
+          break;
+        case 'didDisappear':
           break;
       }
     }
