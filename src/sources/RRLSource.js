@@ -78,25 +78,29 @@ export function parseChapterContent(doc) {
 
 //Takes array of nodes containing text to be parsed
 function formatParse(arr) {
-    let finalContent = "";
+  let finalContent = "";
     for(let i = 0; i < arr.length; i++) {
       let node = arr[i];
-      if (node.tagName === 'br') {
-        finalContent += '\n';
-      } else if (node.tagName === 'p') {
-        if(node['childNodes'].length > 1) {
-          finalContent += formatParse(node['childNodes']);
-        } else {
-          finalContent += node.text + '\n';
-        }
-      } else {
-        finalContent += node.text;
+      switch(node.tagName) {
+        case 'br':
+          finalContent += '\n';
+        break;
+        case 'p':
+          if(node['childNodes'].length > 0) {
+            finalContent += formatParse(node['childNodes']) + '\n';
+          } else {
+            finalContent += node.text + '\n';
+          }
+        break;
+        case 'div':
+          finalContent += node.text.replace(/\r?\n|\r/g, '') + '\n';
+          break;
+        default:
+          finalContent += node.text;
+        break;
       }
-
-
     //Need to add table parsing
     //Need to remove prevChapter/nextChapter table at the end
     }
-
-    return finalContent.replace(/^\s\s*/, '').replace(/\s\s*$/, '')  //Remove leading and trailing whitespace
-  }
+  return finalContent.replace(/^\s\s*/, '').replace(/\s\s*$/, '')  //Remove leading and trailing whitespace
+ }
