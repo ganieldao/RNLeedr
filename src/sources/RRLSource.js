@@ -1,16 +1,6 @@
-const HTMLParser = require('fast-html-parser');
+import {fetchHtmlSource} from './common';
 
-export async function fetchHtmlSource(url) {
-  console.log("time to fetch", url);
-  let body;
-  try {
-    const response = await fetch(url);
-    body = response['_bodyInit'];
-  } catch (err) {
-    console.log('fetch failed', err);
-  } 
-  return body;
-}
+const HTMLParser = require('fast-html-parser');
 
 export function parseChapterInfos(doc) {
   console.log("getting chapters");

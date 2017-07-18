@@ -12,11 +12,6 @@ import {
   Alert
 } from 'react-native';
 
-import {
-  fetchHtmlSource,
-  getFictionInfo
-} from '../../sources/RRLSource'
-
 import * as listActions from '../_actions/fictionListActions';
 
 import FictionService from '../../realm/FictionService';

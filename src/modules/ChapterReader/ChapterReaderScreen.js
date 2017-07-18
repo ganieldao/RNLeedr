@@ -17,7 +17,6 @@ import { MenuContext,
 } from 'react-native-popup-menu';
 
 import {
-  fetchHtmlSource,
   getChapterContent
 } from '../../sources/RRLSource'
 
@@ -79,6 +78,7 @@ class ChapterReaderScreen extends Component {
     if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
       switch(event.id) {
         case 'download':
+          //This needs to be moved
           getChapterContent(this.props.chapterKey).then((chapterContent) => {
             content = chapterContent;
             this.props.actions.addChapterContent(this.props.chapterKey, this.props.fictionKey, content);
