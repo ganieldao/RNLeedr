@@ -30,8 +30,7 @@ const ChapterEntrySchema = {
     title: 'string',
     date: 'string',
     url: 'string',
-    read: {type:'bool', default:false},
-    downloaded: {type:'bool', default:false}
+    read: {type:'bool', default:false}
   }
 }
 

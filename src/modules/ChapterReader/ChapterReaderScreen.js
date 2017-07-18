@@ -58,7 +58,8 @@ class ChapterReaderScreen extends Component {
 
     this.props.actions.retrieveChapterContent(this.props.chapterEntry.url);
 
-    offset = FictionService.getChapterOffset(this.props.chapterEntry.url);
+    //offset = FictionService.getChapterOffset(this.props.chapterEntry.url);
+    offset = 0;
 
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
   }
@@ -72,7 +73,7 @@ class ChapterReaderScreen extends Component {
   }
 
   _handleScrollEnd(event) {
-    FictionService.updateChapterOffset(this.props.chapterEntry.url, event.nativeEvent.contentOffset.y);
+    //FictionService.updateChapterOffset(this.props.chapterKey, event.nativeEvent.contentOffset.y);
   }
 
   onNavigatorEvent(event) {
@@ -119,7 +120,7 @@ class ChapterReaderScreen extends Component {
 
   _deleteChapter() {
     this.props.navigator.pop();
-    this.props.actions.removeChapterContent(this.props.chapterEntry.url, this.props.fictionEntry.key);
+    this.props.actions.removeChapterContent(this.props.chapterEntry.url, this.props.fictionEntry.url);
   }
 
   render() {

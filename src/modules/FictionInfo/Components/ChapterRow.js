@@ -1,10 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 
 import {
-  Image,
+  AppRegistry,
   StyleSheet,
   Text,
   View,
+  FlatList,
+  Image,
+  ScrollView,
   TouchableHighlight
 } from 'react-native';
 
@@ -12,7 +15,7 @@ const icon = require('../../../res/one.png')
 
 const ChapterRow = ({onPressChapter, item, current}) => {
   let color = 'blue';
-  if(item.downloaded == false) {
+  if(item.content === '') {
     color = 'red';
   }
 

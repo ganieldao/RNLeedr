@@ -9,23 +9,22 @@ let FictionService = {
   },
 
   addChapterContent(chapterKey, content) {
-    let chapterDetail = realm.objectForPrimaryKey('ChapterDetail', chapterKey);
-    let chapterEntry = realm.objectForPrimaryKey('ChapterEntry', chapterKey);
+    let obj = realm.objectForPrimaryKey('ChapterDetail', chapterKey);
     realm.write(() => {
-      chapterDetail.content = content;
-      chapterEntry.downloaded = true;
+      obj.content = content;
     });
+    return obj.content;
   },
 
   updateChapterOffset(chapterKey, offset) {
-    let obj = realm.objectForPrimaryKey('ChapterDetail', chapterKey);
+    let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
     realm.write(() => {
       obj.offset = offset;
     });
   },
 
   updateChapterRead(chapterKey, read) {
-    let obj = realm.objectForPrimaryKey('ChapterEntry', chapterKey);
+    let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
     realm.write(() => {
       obj.read = read;
     });
@@ -39,17 +38,16 @@ let FictionService = {
   },
 
   getChapterOffset(chapterKey) {
-    let obj = realm.objectForPrimaryKey('ChapterDetail', chapterKey);
+    let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
     return obj.offset;
   },
 
   removeChapterContent(chapterKey) {
-    let chapterDetail = realm.objectForPrimaryKey('ChapterDetail', chapterKey);
-    let chapterEntry = realm.objectForPrimaryKey('ChapterEntry', chapterKey);
+    let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
     realm.write(() => {
-      chapterDetail.content = '';
-      chapterEntry.downloaded = false;
+      obj.content = '';
     });
+    return obj.content;
   },
 
   getFictions() {
@@ -88,11 +86,9 @@ let FictionService = {
   },
 
   removeFiction(key) {
-    let fictionEntry = realm.objectForPrimaryKey('FictionEntry', key);
-    let fictionDetail = realm.objectForPrimaryKey('FictionDetail', key);
+    let obj = realm.objectForPrimaryKey('Fiction', key);
     realm.write(() => {
-      realm.delete(fictionDetail);
-      realm.delete(fictionEntry);
+      realm.delete(obj);
     })
   }
 }
