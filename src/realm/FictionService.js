@@ -9,22 +9,23 @@ let FictionService = {
   },
 
   addChapterContent(chapterKey, content) {
-    let obj = realm.objectForPrimaryKey('ChapterDetail', chapterKey);
+    let chapterDetail = realm.objectForPrimaryKey('ChapterDetail', chapterKey);
+    let chapterEntry = realm.objectForPrimaryKey('ChapterEntry', chapterKey);
     realm.write(() => {
-      obj.content = content;
+      chapterDetail.content = content;
+      chapterEntry.downloaded = true;
     });
-    return obj.content;
   },
 
   updateChapterOffset(chapterKey, offset) {
-    let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
+    let obj = realm.objectForPrimaryKey('ChapterDetail', chapterKey);
     realm.write(() => {
       obj.offset = offset;
     });
   },
 
   updateChapterRead(chapterKey, read) {
-    let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
+    let obj = realm.objectForPrimaryKey('ChapterEntry', chapterKey);
     realm.write(() => {
       obj.read = read;
     });
@@ -38,16 +39,17 @@ let FictionService = {
   },
 
   getChapterOffset(chapterKey) {
-    let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
+    let obj = realm.objectForPrimaryKey('ChapterDetail', chapterKey);
     return obj.offset;
   },
 
   removeChapterContent(chapterKey) {
-    let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
+    let chapterDetail = realm.objectForPrimaryKey('ChapterDetail', chapterKey);
+    let chapterEntry = realm.objectForPrimaryKey('ChapterEntry', chapterKey);
     realm.write(() => {
-      obj.content = '';
+      chapterDetail.content = '';
+      chapterEntry.downloaded = false;
     });
-    return obj.content;
   },
 
   getFictions() {
@@ -86,9 +88,11 @@ let FictionService = {
   },
 
   removeFiction(key) {
-    let obj = realm.objectForPrimaryKey('Fiction', key);
+    let fictionEntry = realm.objectForPrimaryKey('FictionEntry', key);
+    let fictionDetail = realm.objectForPrimaryKey('FictionDetail', key);
     realm.write(() => {
-      realm.delete(obj);
+      realm.delete(fictionDetail);
+      realm.delete(fictionEntry);
     })
   }
 }

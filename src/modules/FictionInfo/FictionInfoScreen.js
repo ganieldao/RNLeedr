@@ -82,10 +82,10 @@ class FictionInfoScreen extends Component {
         fictionEntry:this.props.fictionEntry
 			}
     });
-    /*this.props.infoActions.updateFictionCurrent(this.props.fictionKey, index);
-    if(!chapter.read) { //Update the read status of the chapter
-      this.props.infoActions.updateChapterRead(chapter.url, this.props.fictionKey, true);
-    }*/
+    this.props.infoActions.updateFictionCurrent(this.props.fictionEntry.key, index);
+    if(!chapterEntry.read) { //Update the read status of the chapter
+      this.props.infoActions.updateChapterRead(chapterEntry.url, this.props.fictionEntry.key, true);
+    }
 	}
 
   _onPressChapter(item, index) {
@@ -95,7 +95,6 @@ class FictionInfoScreen extends Component {
   render() {
     const { details } = this.props;
     const { chapters} = details;
-
     return (
         <View style={{flex:1, flexDirection:'column', backgroundColor:'white'}}>
           <Text>{details.title}</Text>
