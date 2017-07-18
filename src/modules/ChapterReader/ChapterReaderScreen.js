@@ -56,10 +56,9 @@ class ChapterReaderScreen extends Component {
 
     this.state = { content: 'Loading', web: false };
 
-    this.props.actions.retrieveChapterContent(this.props.chapterEntry.url);
+    this.props.actions.retrieveChapterContent(this.props.chapterKey);
 
-    //offset = FictionService.getChapterOffset(this.props.chapterEntry.url);
-    offset = 0;
+    offset = FictionService.getChapterOffset(this.props.chapterKey);
 
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
   }
@@ -73,16 +72,16 @@ class ChapterReaderScreen extends Component {
   }
 
   _handleScrollEnd(event) {
-    //FictionService.updateChapterOffset(this.props.chapterKey, event.nativeEvent.contentOffset.y);
+    FictionService.updateChapterOffset(this.props.chapterKey, event.nativeEvent.contentOffset.y);
   }
 
   onNavigatorEvent(event) {
     if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
       switch(event.id) {
         case 'download':
-          getChapterContent(this.props.chapterEntry.url).then((chapterContent) => {
+          getChapterContent(this.props.chapterKey).then((chapterContent) => {
             content = chapterContent;
-            this.props.actions.addChapterContent(this.props.chapterEntry.url, this.props.fictionEntry.key, content);
+            this.props.actions.addChapterContent(this.props.chapterKey, this.props.fictionKey, content);
           })
           .catch((error) => console.log(error));
         break;
@@ -120,7 +119,7 @@ class ChapterReaderScreen extends Component {
 
   _deleteChapter() {
     this.props.navigator.pop();
-    this.props.actions.removeChapterContent(this.props.chapterEntry.url, this.props.fictionEntry.url);
+    this.props.actions.removeChapterContent(this.props.chapterKey, this.props.fictionKey);
   }
 
   render() {
