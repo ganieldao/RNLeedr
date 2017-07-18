@@ -12,8 +12,8 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import * as infoActions from '../fictionInfoActions';
-import * as listActions from '../fictionListActions'
+import * as infoActions from '../actions/fictionInfoActions';
+import * as listActions from '../actions/fictionListActions'
 
 import ChapterRow from './Components/ChapterRow';
 

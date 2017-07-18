@@ -21,7 +21,7 @@ import {
   getChapterContent
 } from '../../sources/RRLSource'
 
-import * as actions from '../fictionInfoActions.js';
+import * as actions from '../actions/fictionInfoActions.js';
 
 import FictionService from '../../realm/FictionService.js';
 

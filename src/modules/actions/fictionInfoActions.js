@@ -2,9 +2,9 @@ import {
   fetchHtmlSource,
   parseFictionInfo,
   parseChapterContent
-} from '../sources/RRLSource'
+} from '../../sources/RRLSource'
 
-import FictionService from '../realm/FictionService.js';
+import FictionService from '../../realm/FictionService.js';
 
 export function clearFictionDetails() {
   return {

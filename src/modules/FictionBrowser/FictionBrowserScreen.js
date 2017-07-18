@@ -17,7 +17,7 @@ import {
   getFictionInfo
 } from '../../sources/RRLSource'
 
-import * as listActions from '../fictionListActions';
+import * as listActions from '../actions/fictionListActions';
 
 import FictionService from '../../realm/FictionService';
 
