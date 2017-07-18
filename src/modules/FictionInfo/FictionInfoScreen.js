@@ -103,7 +103,7 @@ class FictionInfoScreen extends Component {
           <View style={{flex:0.4, marginBottom:'5%', marginTop:'5%', flexDirection: 'row'}}>
             <Image
               style={{flex:0.4, height:'100%', resizeMode: 'contain'}}
-              source={{uri: details.img}}
+              source={{uri:`data:image/gif;base64,${details.img}`}}
             />
             <View style={{flex:0.6}}>
               <Text>Description:</Text>
