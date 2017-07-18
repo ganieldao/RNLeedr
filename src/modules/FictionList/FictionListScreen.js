@@ -15,7 +15,7 @@ import FictionService from '../../realm/FictionService';
 
 import FictionRow from './Components/FictionRow'
 
-import * as listActions from '../actions/fictionListActions';
+import * as listActions from '../_actions/fictionListActions';
 
 var debounce = require('lodash.debounce');
 
