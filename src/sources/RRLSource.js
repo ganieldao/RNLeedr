@@ -30,24 +30,27 @@ export async function getFictionInfo(url) {
     var doc = HTMLParser.parse(htmlString); 
     info = parseFictionInfo(doc);
     info['url'] = url; //Add the url to the information
-    let imagePath = null
-    await RNFetchBlob
-      .config({ 
-        fileCache : true 
-      })
-      .fetch('GET', info['img'])
-      // the image is now dowloaded to device's storage
-      .then((resp) => {
-        // the image path you can use it directly with Image component
-        imagePath = resp.path()
-        return resp.readFile('base64')
-      })
-      .then((base64Data) => {
-        // here's base64 encoded image
-        info['img'] = base64Data;
-        // remove the file from storage
-        fs.unlink(imagePath)
-    });
+    console.log(info['img']);
+    if(info['img'].includes('https')) {
+      let imagePath = null
+      await RNFetchBlob
+        .config({ 
+          fileCache : true 
+        })
+        .fetch('GET', info['img'])
+        // the image is now dowloaded to device's storage
+        .then((resp) => {
+          // the image path you can use it directly with Image component
+          imagePath = resp.path()
+          return resp.readFile('base64')
+        })
+        .then((base64Data) => {
+          // here's base64 encoded image
+          info['img'] = base64Data;
+          // remove the file from storage
+          fs.unlink(imagePath)
+      });
+    }
 
     chapterInfos = parseChapterInfos(doc);
   } catch (err) {

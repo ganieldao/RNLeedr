@@ -30,6 +30,13 @@ let FictionService = {
     });
   },
 
+  updateChapters(fictionKey, chapters) {
+    let obj = realm.objectForPrimaryKey('Fiction', fictionKey);
+    realm.write(() => {
+      obj.chapters = chapters;
+    });
+  },
+
   updateFictionCurrent(fictionKey, current) {
     let obj = realm.objectForPrimaryKey('Fiction', fictionKey);
     realm.write(() => {
@@ -64,10 +71,28 @@ let FictionService = {
     console.log("adding fiction to realm");
     let fiction;
     let {fictionInfo, chapterInfos} = data;
+
+    //First check if fiction exists. If it does, then mark any changed chapters as new
+    //Otherwise, just add them
+    let fictionExists = false;
+    fiction = realm.objectForPrimaryKey('Fiction', fictionInfo.key);
+    if(fiction != null) {
+      //console.log('Fiction exists!')
+      fictionExists = true;
+    }
+
     realm.write(() => {
       let chapterArray = [];
         chapterInfos.forEach(function(chapter) {
-          chapterArray.push({title:chapter.title, date:chapter.date, url:chapter.url, content:''});
+          let chapterInfo = {title:chapter.title, date:chapter.date, url:chapter.url, content:''};
+          if(fictionExists) {
+            let chapter = realm.objectForPrimaryKey('Chapter', chapterInfo.url);
+            if(chapter == null) {
+              //console.log('New Chapter!');
+              chapterInfo.status = 'new';
+            }
+          }
+          chapterArray.push(chapterInfo);
         }, this);
       fiction = realm.create('Fiction', {
         key:fictionInfo.key,
