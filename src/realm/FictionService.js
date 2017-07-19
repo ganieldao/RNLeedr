@@ -23,10 +23,10 @@ let FictionService = {
     });
   },
 
-  updateChapterRead(chapterKey, read) {
+  updateChapterStatus(chapterKey, status) {
     let obj = realm.objectForPrimaryKey('Chapter', chapterKey);
     realm.write(() => {
-      obj.read = read;
+      obj.status = status;
     });
   },
 

@@ -26,7 +26,7 @@ const ChapterRow = ({onPressChapter, item, current}) => {
   return (<TouchableHighlight underlayColor='gray' onPress={() => onPressChapter()}>
     <View style={{flex:1, marginTop:'1%', marginBottom:'1%', flexDirection:'row'}}>
       <View style={{flex: 0.1, justifyContent:'center', alignItems:'center'}}>
-        {!item.read && <Image source={icon}/>}
+        {(item.status === 'unread') && <Image source={icon}/>}
       </View>
       <View style={{flex: 0.9, flexDirection:'column'}}>
         <Text style={{color:color, fontWeight:'bold'}}>{item.title}</Text>

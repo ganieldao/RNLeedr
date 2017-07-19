@@ -58,8 +58,8 @@ export function addChapterContent(chapterKey, fictionKey, content) {
   }
 }
 
-export function updateChapterRead(chapterKey, fictionKey, read) {
-  FictionService.updateChapterRead(chapterKey, read);
+export function updateChapterStatus(chapterKey, fictionKey, status) {
+  FictionService.updateChapterStatus(chapterKey, status);
   let details = FictionService.getFictionByKey(fictionKey);
   return {
     type: 'UPDATE_CHAPTER_READ_SUCCESS',

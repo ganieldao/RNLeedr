@@ -84,7 +84,7 @@ class FictionInfoScreen extends Component {
     });
     this.props.infoActions.updateFictionCurrent(this.props.fictionKey, index);
     if(!chapter.read) { //Update the read status of the chapter
-      this.props.infoActions.updateChapterRead(chapter.url, this.props.fictionKey, true);
+      this.props.infoActions.updateChapterStatus(chapter.url, this.props.fictionKey, 'read');
     }
 	}
 
