@@ -30,7 +30,7 @@ export async function getFictionInfo(url) {
     var doc = HTMLParser.parse(htmlString); 
     info = parseFictionInfo(doc);
     info['url'] = url; //Add the url to the information
-    console.log(info['img']);
+
     if(info['img'].includes('https')) {
       let imagePath = null
       await RNFetchBlob
@@ -50,6 +50,8 @@ export async function getFictionInfo(url) {
           // remove the file from storage
           fs.unlink(imagePath)
       });
+    } else {
+      info['img'] = '';
     }
 
     chapterInfos = parseChapterInfos(doc);
