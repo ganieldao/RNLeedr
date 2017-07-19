@@ -101,10 +101,17 @@ class FictionInfoScreen extends Component {
           <Text>{details.title}</Text>
           <Text>{details.author}</Text>
           <View style={{flex:0.4, marginBottom:'5%', marginTop:'5%', flexDirection: 'row'}}>
-            <Image
-              style={{flex:0.4, height:'100%', resizeMode: 'contain'}}
-              source={{uri:`data:image/gif;base64,${details.img}`}}
-            />
+            {details.img == ''?
+              <Image
+                style={{flex:0.4, height:'100%', resizeMode: 'contain'}}
+                source={require('../../res/placeholder.png')}
+              />
+            :
+              <Image
+                style={{flex:0.4, height:'100%', resizeMode: 'contain'}}
+                source={{uri:`data:image/gif;base64,${details.img}`}}
+              />
+            }
             <View style={{flex:0.6}}>
               <Text>Description:</Text>
                 <ScrollView style={{flex:0.5}}>
