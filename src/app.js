@@ -17,10 +17,10 @@ Navigation.startTabBasedApp({
       title: 'Fiction List'
     },
     {
-      label: 'Fiction Browser',
+      label: 'Add Fiction',
       screen: 'Leedr.FictionBrowserScreen', // this is a registered name for a screen
       icon: require('./res/one.png'),
-      title: 'Fiction Browser'
+      title: 'Add Fiction'
     }
   ]
 });

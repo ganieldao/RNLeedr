@@ -9,7 +9,8 @@ import {
   Button,
   TextInput,
   ActivityIndicator,
-  Alert
+  Alert,
+  Keyboard
 } from 'react-native';
 
 import {
@@ -52,6 +53,7 @@ class FictionBrowserScreen extends Component {
   }
 
   _onPress() {
+    Keyboard.dismiss(); 
     this._addFiction('https://royalroadl.com/fiction/' + this.state.text);
   }
 
@@ -76,13 +78,21 @@ class FictionBrowserScreen extends Component {
             <Text>Adding Fiction...</Text>
           </View>
         }
-        <TextInput
-          style={{flex:0.2, textAlign:'center'}}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
-        />
-        <View style={{flex:0.8}}>
-        <Button style={{flex:1}} title='Add' onPress={() => this._onPress()}/>
+        <View style={{flex:0.4, justifyContent:'center'}}>
+          <TextInput
+            style={{textAlign:'center'}}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text}
+          />
+          <Button title='Add' onPress={() => this._onPress()}/>
+        </View>
+        <View style={{flex:0.6}}>
+          <Text style={{textAlign:'center'}}>{'To add a fiction, enter the fiction id.\nThe id can be found in the url.'}</Text>
+          <Text style={{textAlign:'center'}}>
+            <Text>https://royalroadl.com/fiction/</Text>
+            <Text style={{fontWeight:'bold'}}>1234</Text>
+            <Text>/fiction-name</Text> 
+          </Text>
         </View>
       </View>
     );
