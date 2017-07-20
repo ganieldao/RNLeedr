@@ -11,6 +11,10 @@ import {
   TouchableHighlight
 } from 'react-native';
 
+const inProgressIcon = require('../../../res/in_progress.png');
+const unreadIcon = require('../../../res/unread.png');
+const newIcon = require('../../../res/new.png');
+
 const ChapterRow = ({onPressChapter, item, current}) => {
   let color = 'blue';
   if(item.content === '') {
@@ -18,9 +22,11 @@ const ChapterRow = ({onPressChapter, item, current}) => {
   }
 
   if(current) {
-    icon = require('../../../res/in_progress.png');
-  } else {
-    icon = require('../../../res/one.png')
+    icon = inProgressIcon;
+  } else if(item.status === 'unread') {
+    icon = unreadIcon;
+  } else if(item.status === 'new') {
+    icon = newIcon;
   }
 
   return (<TouchableHighlight underlayColor='gray' onPress={() => onPressChapter()}>
