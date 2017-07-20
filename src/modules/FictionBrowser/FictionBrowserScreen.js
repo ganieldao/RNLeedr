@@ -80,11 +80,11 @@ class FictionBrowserScreen extends Component {
         }
         <View style={{flex:0.4, justifyContent:'center'}}>
           <TextInput
-            style={{textAlign:'center'}}
+            style={{textAlign:'center', flex:0.5}}
             onChangeText={(text) => this.setState({text})}
             value={this.state.text}
           />
-          <Button title='Add' onPress={() => this._onPress()}/>
+          <Button style={{flex:0.5}} title='Add' onPress={() => this._onPress()}/>
         </View>
         <View style={{flex:0.6}}>
           <Text style={{textAlign:'center'}}>{'To add a fiction, enter the fiction id.\nThe id can be found in the url.'}</Text>
