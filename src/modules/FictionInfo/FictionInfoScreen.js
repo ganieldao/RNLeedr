@@ -79,13 +79,14 @@ class FictionInfoScreen extends Component {
       title: chapter.title,
 			passProps: {
         chapterKey:chapter.url,
-        fictionKey:this.props.fictionKey
+        fictionKey:this.props.fictionKey,
+        index:index
 			}
     });
-    this.props.infoActions.updateFictionCurrent(this.props.fictionKey, index);
-    if(!chapter.read) { //Update the read status of the chapter
-      this.props.infoActions.updateChapterStatus(chapter.url, this.props.fictionKey, 'read');
-    }
+    //this.props.infoActions.updateFictionCurrent(this.props.fictionKey, index);
+    //if(!chapter.read) { //Update the read status of the chapter
+      //this.props.infoActions.updateChapterStatus(chapter.url, this.props.fictionKey, 'read');
+    //}
 	}
 
   _onPressChapter(item, index) {

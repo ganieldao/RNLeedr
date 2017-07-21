@@ -72,6 +72,8 @@ class ChapterReaderScreen extends Component {
 
   _handleScrollEnd(event) {
     FictionService.updateChapterOffset(this.props.chapterKey, event.nativeEvent.contentOffset.y);
+    this.props.actions.updateFictionCurrent(this.props.fictionKey, this.props.index);
+    this.props.actions.updateChapterStatus(this.props.chapterKey, this.props.fictionKey, 'read');
   }
 
   onNavigatorEvent(event) {
