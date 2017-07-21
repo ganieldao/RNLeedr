@@ -80,7 +80,9 @@ class FictionInfoScreen extends Component {
 			passProps: {
         chapterKey:chapter.url,
         fictionKey:this.props.fictionKey,
-        index:index
+        index:index,
+        current:(index == this.props.details.current),
+        status:chapter.status
 			}
     });
     //this.props.infoActions.updateFictionCurrent(this.props.fictionKey, index);

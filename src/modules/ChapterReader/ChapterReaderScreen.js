@@ -53,13 +53,18 @@ class ChapterReaderScreen extends Component {
       animated: true 
     });*/
 
-    this.state = { content: 'Loading', web: false };
+    this.state = { content: 'Loading', web: false, current:this.props.current, status:this.props.status};
 
     this.props.actions.retrieveChapterContent(this.props.chapterKey);
 
     offset = FictionService.getChapterOffset(this.props.chapterKey);
 
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+
+    if(this.state.status === 'new') {
+      this.props.actions.updateChapterStatus(this.props.chapterKey, this.props.fictionKey, 'unread');
+      this.setState({status:'unread'});
+    }
   }
 
   _updateButtons() {
@@ -72,8 +77,15 @@ class ChapterReaderScreen extends Component {
 
   _handleScrollEnd(event) {
     FictionService.updateChapterOffset(this.props.chapterKey, event.nativeEvent.contentOffset.y);
-    this.props.actions.updateFictionCurrent(this.props.fictionKey, this.props.index);
-    this.props.actions.updateChapterStatus(this.props.chapterKey, this.props.fictionKey, 'read');
+    
+    if(!this.state.current) {
+      this.props.actions.updateFictionCurrent(this.props.fictionKey, this.props.index);
+      this.setState({current:true});
+    }
+    if(this.state.status === 'unread') {
+      this.setState({status:'read'});
+      this.props.actions.updateChapterStatus(this.props.chapterKey, this.props.fictionKey, 'read');
+    }
   }
 
   onNavigatorEvent(event) {
