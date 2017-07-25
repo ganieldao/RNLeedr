@@ -2,7 +2,7 @@
 Leedr is a react-native powered fiction reader for royalroadl.com.
 It uses redux for state management and realm for offline storage.
 
-![Android Fiction List Screen](http://imgur.com/ghgJo6o.png) ![Android Fiction Detail Screen](http://imgur.com/iBxjtR6.png) ![Android Reader Screen](http://imgur.com/U49QQBy.png)
+![Android Fiction List Screen](http://imgur.com/9jJPweh.png) ![Android Fiction Detail Screen](http://imgur.com/KWtV8HT.png) ![Android Reader Screen](http://imgur.com/aAXwkz8.png)
 
 ### Setup
 
